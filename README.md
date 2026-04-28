@@ -18,7 +18,7 @@ Sistema web desenvolvido para gerenciar avaliações de filmes, permitindo que u
 
 2. Configure o banco de dados em `src/main/resources/application.properties`:
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/leo-e-amigo
+   spring.datasource.url=jdbc:mysql://localhost:3306/cinestar
    spring.datasource.username=seu_usuario
    spring.datasource.password=sua_senha
    spring.jpa.hibernate.ddl-auto=update
