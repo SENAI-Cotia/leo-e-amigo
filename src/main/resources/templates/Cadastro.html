@@ -5,6 +5,12 @@
     <title>Cadastro</title>
 </head>
 <body>
+<div th:if="${mensagemErroEmail}">
+    <p th:text="${mensagemErroEmail}"></p>
+</div>
+<div th:if="${mensagemErroUsername}">
+    <p th:text="${mensagemErroUsername}"></p>
+</div>
 <h1>CADASTRE-SE</h1>
 <form th:object="${user}" method="post" th:action="@{/salvar}">
     <input type = "hidden" th:field="*{id}">
