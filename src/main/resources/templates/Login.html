@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
+    <h1>Login</h1>
+    <form th:object="${user}" method="post" th:action="@{/login}">
+        <input type = "hidden" th:field="*{id}">
+
+        <label>Email: </label>
+        <input type="email" th:field="*{email}">
+        <label>Senha: </label>
+        <input type="password" th:field="*{senha}">
+
+        <br>
+        <button type="submit">Criar conta</button>
+        <a th:href="@{/cadastro}">Ainda não possui uma conta? Cadastre-se aqui</a>
+    </form>
 
 </body>
 </html>
