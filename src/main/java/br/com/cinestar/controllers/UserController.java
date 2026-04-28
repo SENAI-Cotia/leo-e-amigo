@@ -25,7 +25,7 @@ public class UserController {
     public String getUsers(Model model){
         model.addAttribute("user",new User());
         return "Login";
-}
+    }
 
     @GetMapping("/cadastro")
     public String formUser(Model model){
