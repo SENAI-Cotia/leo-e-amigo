@@ -1,4 +1,50 @@
 package br.com.cinestar.controllers;
 
+import br.com.cinestar.models.User;
+import br.com.cinestar.repositories.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.lang.constant.ModuleDesc;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/")
 public class UserController {
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping
+    public String getUsers(Model model){
+        return "Login";
+    }
+
+    @GetMapping("/cadastro")
+    public String formUser(Model model){
+        model.addAttribute("user",new User());
+        return "Cadastro";
+    }
+
+    @GetMapping("/Home")
+    public String home(Model model){
+    List <User> users =userRepository.findAll();
+    model.addAttribute("users",users);
+    return "Index";
+    }
+
+    @PostMapping("/logar")
+    public String salvar(@ModelAttribute User userR){
+        User user=userRepository.findByEmail(userR.getEmail()).orElseThrow(()-> new RuntimeException("Credenciais inválidas"));
+        if (!user.getSenha().equals(userR.getSenha())){
+            throw new RuntimeException("Credenciais inválidas");
+        }
+        return "redirect:/Home";
+    }
 }
