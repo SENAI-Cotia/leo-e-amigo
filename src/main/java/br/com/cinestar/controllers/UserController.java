@@ -47,4 +47,28 @@ public class UserController {
         }
         return "redirect:/Home";
     }
+
+    @PostMapping("/salvar")
+    public String salvar(@ModelAttribute User userR, RedirectAttributes redirectAttributes) {
+        if (userR.getEmail().trim().isEmpty() || userR.getNome().trim().isEmpty()) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "ERRO: Digite um email e nome válidos");
+            return "redirect:/cadastro";
+        }
+
+        Optional<User> userComMesmoEmail= userRepository.findByEmail(userR.getEmail());
+        if (userComMesmoEmail.isPresent()){
+            redirectAttributes.addFlashAttribute("mensagemErroEmail","E-mail já existe.");
+            return "redirect:/cadastro";
+        }
+        Optional<User> userComMesmoUsername= userRepository.findByUsername(userR.getUsername());
+        if (userComMesmoUsername.isPresent()){
+            redirectAttributes.addFlashAttribute("mensagemErroUsername","Username já existe.");
+            return "redirect:/cadastro";
+        }
+        userRepository.save(userR);
+
+        redirectAttributes.addFlashAttribute("mensagemSucesso","Aluno cadastrado com sucesso!");
+        return "redirect:/";
+    }
+
 }

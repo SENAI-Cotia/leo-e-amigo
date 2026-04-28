@@ -6,6 +6,21 @@
 </head>
 <body>
 <h1>CADASTRE-SE</h1>
+<form th:object="${user}" method="post" th:action="@{/salvar}">
+    <input type = "hidden" th:field="*{id}">
 
+    <label>Nome: </label>
+    <input type="text" th:field="*{nome}">
+    <label>Username: </label>
+    <input type="text" th:field="*{username}">
+    <label>Email: </label>
+    <input type="email" th:field="*{email}">
+    <label>Senha: </label>
+    <input type="password" th:field="*{senha}">
+
+    <br>
+    <button type="submit">Criar conta</button>
+    <a th:href="@{/}">Já possui conta? Clique aqui</a>
+</form>
 </body>
 </html>
