@@ -23,6 +23,7 @@ public class UserController {
 
     @GetMapping
     public String getUsers(Model model){
+        model.addAttribute("user",new User());
         return "Login";
 }
 
