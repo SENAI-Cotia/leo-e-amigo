@@ -16,6 +16,9 @@
 
         <br>
         <button type="submit">Logar</button>
+        <div th:if="${mensagemErro}">
+            <p th:text="${mensagemErro}"></p>
+        </div>
         <a>Ainda não possui uma conta? </a><a th:href="@{/cadastro}">Cadastre-se aqui</a>
     </form>
 
