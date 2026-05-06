@@ -68,7 +68,7 @@ public class UserController {
         }
         userRepository.save(userR);
 
-        redirectAttributes.addFlashAttribute("mensagemSucesso","Aluno cadastrado com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagemSucesso","Usuário cadastrado com sucesso!");
         return "redirect:/";
     }
 
