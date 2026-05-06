@@ -25,14 +25,14 @@ public class ReviewController {
         return "Review";
     }
 
-    @GetMapping("/Home")
+    @GetMapping("/HomeReview")
     public String getReviews(Model model){
         List<Review> reviews = reviewRepository.findAll();
         model.addAttribute("reviews",reviews);
         return "Index";
     }
 
-    @PostMapping("/salvar")
+    @PostMapping("/salvarReview")
     public String cadastrar(@ModelAttribute Review ReviewR, RedirectAttributes redirectAttributes) {
         if (ReviewR.getNomeFilme().trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("mensagemErroR", "ERRO: Digite o nome do filme");
@@ -45,6 +45,15 @@ public class ReviewController {
         return "redirect:/";
     }
 
+    @GetMapping("/editarReview/{id}")
+    public String formEditar(@PathVariable Long id, Model model){
+
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Review nao encontrada"));
+        model.addAttribute("review",review);
+        return "Review";
+
+    }
 
 
 }
