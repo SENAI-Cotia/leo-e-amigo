@@ -16,13 +16,13 @@
     <input type = "hidden" th:field="*{id}">
 
     <label>Nome: </label>
-    <input type="text" th:field="*{nome}">
+    <input type="text" th:field="*{nome}" required>
     <label>Username: </label>
-    <input type="text" th:field="*{username}">
+    <input type="text" th:field="*{username}" required>
     <label>Email: </label>
-    <input type="email" th:field="*{email}">
+    <input type="email" th:field="*{email}"required>
     <label>Senha: </label>
-    <input type="password" th:field="*{senha}">
+    <input type="password" th:field="*{senha}"required>
 
     <br>
     <button type="submit">Criar conta</button>

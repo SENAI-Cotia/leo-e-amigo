@@ -1,7 +1,9 @@
 package br.com.cinestar.models;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -16,6 +18,10 @@ public class Review {
     private String reviewDesc;
     @Column(nullable = false, unique = false)
     private Double nota;
+    @Column(nullable = false, unique = false)
+    private String urlCapaFilme;
+    @Column(nullable = true, unique = false)
+    private LocalDate dataAssistido;
 
     @ManyToOne
     private User user;
@@ -23,11 +29,13 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long id, String nomeFilme, String reviewDesc, Double nota) {
+    public Review(Long id, String nomeFilme, String reviewDesc, Double nota, String urlCapaFilme, LocalDate dataAssistido) {
         this.id = id;
         this.nomeFilme = nomeFilme;
         this.reviewDesc = reviewDesc;
         this.nota = nota;
+        this.urlCapaFilme = urlCapaFilme;
+        this.dataAssistido = dataAssistido;
     }
 
     public Long getId() {
@@ -60,6 +68,22 @@ public class Review {
 
     public void setNota(Double nota) {
         this.nota = nota;
+    }
+
+    public String getUrlCapaFilme() {
+        return urlCapaFilme;
+    }
+
+    public void setUrlCapaFilme(String urlCapaFilme) {
+        this.urlCapaFilme = urlCapaFilme;
+    }
+
+    public LocalDate getDataAssistido() {
+        return dataAssistido;
+    }
+
+    public void setDataAssistido(LocalDate dataAssistido) {
+        this.dataAssistido = dataAssistido;
     }
 }
 

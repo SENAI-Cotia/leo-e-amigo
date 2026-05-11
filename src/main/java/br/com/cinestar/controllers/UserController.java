@@ -25,7 +25,7 @@ public class UserController {
     public String getUsers(Model model){
         model.addAttribute("user",new User());
         return "Login";
-}
+    }
 
     @GetMapping("/cadastro")
     public String formUser(Model model){
@@ -68,7 +68,7 @@ public class UserController {
         }
         userRepository.save(userR);
 
-        redirectAttributes.addFlashAttribute("mensagemSucesso","Aluno cadastrado com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagemSucesso","Usuário cadastrado com sucesso!");
         return "redirect:/";
     }
 
