@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --purple: #F5294B;
+    --white: #FFFFFF;
+    --background-light: #f0f2f5;
+    --background-dark: #1C1E21;
+    --text-light: #333333;
+    --text-dark: #FFFFFF;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.login-section.dark{
+  background-color: var(--background-light);
+
+  h1, p{
+    color: var(--text-light);
+  }
+
+  label{
+    color: var(--text-light);
+  }
+
+  input[type="email"], input[type="password"]{
+    background-color: var(--background-light);
+    color: var(--text-light);
+  }
+}
+
+.login-section {
+    background-color: var(--background-dark);
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 50%;
+}
+
+.image-section {
+    flex: 1;
+    background-image: url('/css/images/myke-simon-atsUqIm3wxo-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.image-section:hover {
+    transform: scale(1.02);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 24px;
+}
+
+h1 {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+p {
+    color: var(--background-light);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 404px;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: slideUp 0.5s ease-out;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    text-align: left;
+    font-weight: 500;
+}
+
+input[type="email"], input[type="password"] {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    width: 404px;
+    height: 40px;
+    padding: 0 0.5rem;
+    border: 1px solid #dddfe2;
+    border-radius: 13px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 2px rgba(167, 41, 245, 0.2);
+    outline: none;
+    color: var(--text-dark);
+}
+
+.Cadastrese{
+    color: var(--purple);
+}
+
+button[type="submit"] {
+    margin-top: 50px;
+    width: 404px;
+    height: 40px;
+    padding: 0;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[type="submit"]:hover {
+    background-color: #b81631;
+}
+
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+.forgot-password {
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: var(--purple);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.g-recaptcha {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    width: 404px;
+    animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+
+.tema{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#checkboxInput {
+  display: none;
+}
+
+.toggleSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  background-color: rgb(82, 82, 82);
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: .2s;
+  margin-right: 50px;
+}
+
+.toggleSwitch::after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  left: 5px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition-duration: .2s;
+  box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+  border: 5px solid white;
+}
+
+#checkboxInput:checked+.toggleSwitch::after {
+  transform: translateX(100%);
+  transition-duration: .2s;
+  background-color: white;
+}
+
+#checkboxInput:checked+.toggleSwitch {
+  background-color: var(--purple);
+  transition-duration: .2s;
+}
+
+@media screen and (max-width: 1024px) {
+    body{
+        background-color: var(--background-dark);
+
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .login-section, .image-section {
+        width: 100%;
+        max-width: 100vh;
+    }
+
+    .image-section {
+        height: 200px;
+        border-radius: 0;
+    }
+
+}
