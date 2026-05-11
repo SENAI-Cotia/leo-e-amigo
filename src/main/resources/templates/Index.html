@@ -5,7 +5,31 @@
     <title>Início</title>
 </head>
 <body>
+<div th:if="${mensagemSucessoR}">
+    <p  th:text="${mensagemSucessoR}"></p>
+</div>
 <a th:href="@{/review}">Add Review</a>
+<table>
+    <thead>
+    <tr>
 
+        <th>Nome do Filme</th>
+        <th>Desc do filme</th>
+        <th>Nota do filme</th>
+        <th>URL capa do filme</th>
+        <th>Data assistido</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review:${reviews}">
+        <td th:text="${review.nomeFilme}"></td>
+        <td th:text="${review.reviewDesc}"></td>
+        <td th:text="${review.nota}"></td>
+        <td th:text="${review.urlCapaFilme}"></td>
+        <td th:text="${review.dataAssistido}"></td>
+        <td><a class="button" th:href="@{/editarReview/{id}(id=${review.id})}">Editar</a><a class="button" th:href="@{/excluir/{id}(id=${review.id})}">Deletar</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

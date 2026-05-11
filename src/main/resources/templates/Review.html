@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Review</title>
 </head>
 <body>
-<h1>oi</h1>
+<div th:if="${mensagemErroR}">
+    <p th:text="${mensagemErroR}"></p>
+</div>
+<div th:if="${mensagemErroRNota}">
+    <p th:text="${mensagemErroRNota}"></p>
+</div>
+<h1>Review</h1>
+<form th:object="${review}" method="post" th:action="@{/salvarReview}">
+    <input type = "hidden" th:field="*{id}">
+
+    <label>Nome do filme: </label>
+    <input type="text" th:field="*{nomeFilme}" required>
+    <label>Escreva a sua opinião: </label>
+    <input type="text" th:field="*{reviewDesc}">
+    <label>Digite a nota: </label>
+    <input type="number" th:field="*{nota}" required>
+    <label>URL capa do filme: </label>
+    <input type="text" th:field="*{urlCapaFilme}" required>
+    <label>Data assistido: </label>
+    <input type="date" th:field="*{dataAssistido}">
+
+
+    <br>
+    <button type="submit">Salvar Review</button>
+
+</form>
 </body>
 </html>

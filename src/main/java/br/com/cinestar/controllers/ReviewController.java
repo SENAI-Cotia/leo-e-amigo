@@ -34,15 +34,11 @@ public class ReviewController {
 
     @PostMapping("/salvarReview")
     public String cadastrar(@ModelAttribute Review ReviewR, RedirectAttributes redirectAttributes) {
-        if (ReviewR.getNomeFilme().trim().isEmpty()) {
-            redirectAttributes.addFlashAttribute("mensagemErroR", "ERRO: Digite o nome do filme");
-            return "redirect:/review";
-        }
 
         reviewRepository.save(ReviewR);
 
         redirectAttributes.addFlashAttribute("mensagemSucessoR","Review salva com sucesso!");
-        return "redirect:/";
+        return "redirect:/HomeReview";
     }
 
     @GetMapping("/editarReview/{id}")
@@ -54,6 +50,10 @@ public class ReviewController {
         return "Review";
 
     }
-
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable long id){
+        reviewRepository.deleteById(id);
+        return "redirect:/HomeReview";
+    }
 
 }
