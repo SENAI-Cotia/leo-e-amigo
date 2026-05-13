@@ -1,0 +1,251 @@
+:root {
+    --Purple: #F5294B;
+    --White: #FFFFFF;
+    --Black: #000;
+    --Background-light: #f0f2f5;
+    --Background-dark: #1C1E21;
+    --Text-light: #333333;
+    --Text-dark: #FFFFFF;
+    --Header: #222222;
+    --Backgound-form: #171717;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--Background-light);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.login-section.dark {
+    background-color: var(--Background-light);
+
+    h1,
+    p {
+        color: var(--Text-light);
+    }
+
+    label {
+        color: var(--Text-light);
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    .erro p {
+        color: var(--Purple);
+    }
+
+    .login {
+        color: var(--Purple);
+    }
+}
+
+.erro p {
+    color: var(--Purple);
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.login-section {
+    background-color: var(--Background-dark);
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 50%;
+    transition: background-color 0.5s ease;
+}
+
+.image-section {
+    flex: 1;
+    background-image: url('/css/images/myke-simon-atsUqIm3wxo-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.image-section:hover {
+    transform: scale(1.02);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 24px;
+}
+
+h1 {
+    color: var(--Text-dark);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+p {
+    color: var(--Text-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 404px;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: slideUp 0.5s ease-out;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--Text-dark);
+    text-align: left;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    color: var(--Text-dark);
+    background-color: var(--Background-dark);
+    width: 404px;
+    height: 40px;
+    padding: 0 0.5rem;
+    border: 1px solid #dddfe2;
+    border-radius: 13px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--Purple);
+    box-shadow: 0 0 0 2px rgba(167, 41, 245, 0.2);
+    outline: none;
+    color: var(--Text-dark);
+}
+
+button[type="submit"] {
+    width: 404px;
+    height: 40px;
+    padding: 0;
+    background-color: var(--Purple);
+    color: var(--White);
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[type="submit"]:hover {
+    background-color: #b81631;
+}
+
+.login {
+    color: var(--Purple);
+}
+
+.tema {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#checkboxinput {
+    display: none;
+}
+
+.toggleswitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background-color: rgb(82, 82, 82);
+    border-radius: 20px;
+    cursor: pointer;
+    transition-duration: .2s;
+    margin-right: 50px;
+}
+
+.toggleswitch::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    left: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition-duration: .2s;
+    box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+    border: 5px solid white;
+}
+
+#checkboxinput:checked + .toggleswitch::after {
+    transform: translateX(100%);
+    transition-duration: .2s;
+    background-color: white;
+}
+
+#checkboxinput:checked + .toggleswitch {
+    background-color: var(--Purple);
+    transition-duration: .2s;
+}
+
+@media screen and (max-width: 1024px) {
+
+    body {
+        background-color: var(--Background-dark);
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .login-section,
+    .image-section {
+        width: 100%;
+        max-width: 100vh;
+    }
+
+    .image-section {
+        height: 200px;
+        border-radius: 0;
+    }
+}

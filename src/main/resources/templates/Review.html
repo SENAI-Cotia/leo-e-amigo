@@ -1,35 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Review</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/avaliar.css}">
+    <title>Home - CineStar</title>
 </head>
 <body>
-<div th:if="${mensagemErroR}">
-    <p th:text="${mensagemErroR}"></p>
-</div>
-<div th:if="${mensagemErroRNota}">
-    <p th:text="${mensagemErroRNota}"></p>
-</div>
-<h1>Review</h1>
-<form th:object="${review}" method="post" th:action="@{/salvarReview}">
-    <input type = "hidden" th:field="*{id}">
+<header>
+    <img src="/css/images/logo.svg" alt="">
 
-    <label>Nome do filme: </label>
-    <input type="text" th:field="*{nomeFilme}" required>
-    <label>Escreva a sua opinião: </label>
-    <input type="text" th:field="*{reviewDesc}">
-    <label>Digite a nota: </label>
-    <input type="number" th:field="*{nota}" required>
-    <label>URL capa do filme: </label>
-    <input type="text" th:field="*{urlCapaFilme}" required>
-    <label>Data assistido: </label>
-    <input type="date" th:field="*{dataAssistido}">
+    <div class="header">
+        <input type="checkbox" id="checkboxinput">
+        <label for="checkboxinput" class="toggleswitch"></label>
+        <div class="login">
+            <h1>Username:</h1>
+            <h1 th></h1>
+        </div>
+    </div>
+</header>
 
+<main>
+    <section>
+        <div class="titulo">
+            <div class="categoria">
+                <h1>Avalie</h1>
+                <img src="/css/images/Fire.png" alt="">
+            </div>
+        </div>
+        <hr>
 
-    <br>
-    <button type="submit">Salvar Review</button>
+        <form class="conteudo" th:object="${review}" method="post" th:action="@{/salvarReview}" >
+            <div class="top1">
+                <input type="text" class="input-nome" th:field="*{nomeFilme}" placeholder="Nome do filme:" required>
+                <textarea class="input-descreva" th:field="*{reviewDesc}" placeholder="Escreva aqui:"></textarea>
+            </div>
+            <div class="top1">
+                <input type="date" class="input-nome"  th:field="*{dataAssistido}" placeholder="Data:">
+                <textarea class="input-descreva" th:field="*{urlCapaFilme}" placeholder="URL da imagem:" required></textarea>
+            </div>
+            <div class="bottom">
+                <div class="avaliar">
+                    <img src="/css/images/Star%204.svg" alt="Estrela rosa">
+                    <input th:field="*{nota}" class="avalie" max="5" min="1" type="number"  placeholder="Nota:" required>
+                </div>
 
-</form>
+                <div class="enviar">
+                    <a class="limpar" href="#">Limpar Dados</a>
+                    <button type="submit">Confirmar</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+<script>
+    const checkbox = document.getElementById("checkboxinput");
+
+const tema = localStorage.getItem("theme") || "light";
+
+if (tema === "dark") {
+    document.body.classList.add("dark");
+    checkbox.checked = true;
+}
+
+checkbox.addEventListener("change", () => {
+    const isDark = checkbox.checked;
+
+    document.body.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+</script>
 </body>
 </html>
