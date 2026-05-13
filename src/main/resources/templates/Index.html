@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/index.css}">
     <title>Home - CineStar</title>
 </head>
@@ -28,13 +30,15 @@
         </div>
         <hr>
         <div class="info" th:each="review:${reviews}">
-            <div class="capa">
-                <img th:src="${review.urlCapaFilme}">
-            </div>
-            <div class="informacoes">
-                <h1 th:text="${review.nomeFilme}"></h1>
-                <p th:text="${review.reviewDesc}">
-                </p>
+            <div class="container">
+                <div class="capa">
+                    <img th:src="${review.urlCapaFilme}">
+                </div>
+                <div class="informacoes">
+                    <h1 th:text="${review.nomeFilme}"></h1>
+                    <p th:text="${review.reviewDesc}">
+                    </p>
+                </div>
             </div>
             <div class="bottom">
                 <div class="nota">
