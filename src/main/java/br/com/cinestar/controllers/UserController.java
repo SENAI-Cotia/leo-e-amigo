@@ -3,6 +3,7 @@ package br.com.cinestar.controllers;
 import br.com.cinestar.models.User;
 import br.com.cinestar.repositories.UserRepository;
 
+import br.com.cinestar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -40,14 +41,19 @@ public class UserController {
     return "Index";
     }
 
-    @PostMapping("/login")
-    public String logar(@ModelAttribute User userR){
-        User user=userRepository.findByEmail(userR.getEmail()).orElseThrow(()-> new RuntimeException("Credenciais inválidas"));
-        if (!user.getSenha().equals(userR.getSenha())){
-            throw new RuntimeException("Credenciais inválidas");
-        }
-        return "redirect:/Home";
-    }
+//    @PostMapping("/login")
+//    public String logar(@ModelAttribute User userR){
+//        User user=userRepository.findByEmail(userR.getEmail()).orElseThrow(()-> new RuntimeException("Credenciais inválidas"));
+//        if (!user.getSenha().equals(userR.getSenha())){
+//            throw new RuntimeException("Credenciais inválidas");
+//        }
+//        return "redirect:/Home";
+//    }
+
+    @Autowired
+    private UserService userService;
+
+// REMOVER o @Autowired do UserRepository se não usar mais em outros métodos
 
     @PostMapping("/salvar")
     public String cadastrar(@ModelAttribute User userR, RedirectAttributes redirectAttributes) {
@@ -56,19 +62,18 @@ public class UserController {
             return "redirect:/cadastro";
         }
 
-        Optional<User> userComMesmoEmail= userRepository.findByEmail(userR.getEmail());
-        if (userComMesmoEmail.isPresent()){
-            redirectAttributes.addFlashAttribute("mensagemErroEmail","E-mail já existe.");
+        if (userRepository.findByEmail(userR.getEmail()).isPresent()) {
+            redirectAttributes.addFlashAttribute("mensagemErroEmail", "E-mail já existe.");
             return "redirect:/cadastro";
         }
-        Optional<User> userComMesmoUsername= userRepository.findByUsername(userR.getUsername());
-        if (userComMesmoUsername.isPresent()){
-            redirectAttributes.addFlashAttribute("mensagemErroUsername","Username já existe.");
-            return "redirect:/cadastro";
-        }
-        userRepository.save(userR);
 
-        redirectAttributes.addFlashAttribute("mensagemSucesso","Usuário cadastrado com sucesso!");
+        if (userRepository.findByUsername(userR.getUsername()).isPresent()) {
+            redirectAttributes.addFlashAttribute("mensagemErroUsername", "Username já existe.");
+            return "redirect:/cadastro";
+        }
+
+        userService.register(userR);
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
         return "redirect:/";
     }
 
