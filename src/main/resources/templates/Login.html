@@ -21,6 +21,9 @@
                 <label for="password">Senha:</label>
                 <input type="password" id="password" th:field="*{senha}" name="password" placeholder="Digite sua senha">
             </div>
+            <div th:if="${mensagemErro}" class="erro">
+                <p th:text="${mensagemErro}" ></p>
+            </div>
             <button type="submit">Login</button>
             <p>Não tem uma conta? <a class="Cadastrese" th:href="@{/cadastro}" >Cadastre-se</a></p>
             <div class="tema">

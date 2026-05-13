@@ -3,18 +3,23 @@
 :root {
     --Purple: #F5294B;
     --White: #FFFFFF;
+    --Black: #000;
     --Background-light: #f0f2f5;
     --Background-dark: #1C1E21;
     --Text-light: #333333;
     --Text-dark: #FFFFFF;
+    --Header: #222222;
+    --Backgound-form: #171717;
 }
 
 body {
-  background-color: var(--Black);
-  color: var(--Text);
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--Background-light);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
@@ -25,21 +30,38 @@ body {
     animation: fadeIn 0.5s ease-out;
 }
 
-.login-section.dark{
-  background-color: var(--Background-light);
-
-  h1, p{
-    color: var(--Text-light);
-  }
-
-  label{
-    color: var(--Text-light);
-  }
-
-  input[type="email"], input[type="password"]{
+.login-section.dark {
     background-color: var(--Background-light);
-    color: var(--Text-light);
-  }
+
+    h1,
+    p {
+        color: var(--Text-light);
+    }
+
+    label {
+        color: var(--Text-light);
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    .erro p {
+        color: var(--Purple);
+    }
+
+    .login {
+        color: var(--Purple);
+    }
+}
+
+.erro p {
+    color: var(--Purple);
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 
 .login-section {
@@ -52,6 +74,7 @@ body {
     align-items: center;
     text-align: center;
     max-width: 50%;
+    transition: background-color 0.5s ease;
 }
 
 .image-section {
@@ -80,7 +103,7 @@ h1 {
 }
 
 p {
-    color: var(--Background-light);
+    color: var(--Text-dark);
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
@@ -93,7 +116,6 @@ p {
     animation: slideUp 0.5s ease-out;
 }
 
-
 label {
     display: block;
     margin-bottom: 0.5rem;
@@ -102,9 +124,11 @@ label {
     font-weight: 500;
 }
 
-input[type="email"], input[type="password"] {
-    background-color: var(--Background-dark);
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     color: var(--Text-dark);
+    background-color: var(--Background-dark);
     width: 404px;
     height: 40px;
     padding: 0 0.5rem;
@@ -117,21 +141,13 @@ input[type="email"], input[type="password"] {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="email"]:focus, input[type="password"]:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
     border-color: var(--Purple);
     box-shadow: 0 0 0 2px rgba(167, 41, 245, 0.2);
     outline: none;
     color: var(--Text-dark);
-}
-
-.Cadastrese{
-    color: var(--Purple);
-}
-
-.erro p{
-    color: var(--Purple);
-    margin-top: -10px;
-    margin-bottom: 20px;
 }
 
 button[type="submit"] {
@@ -156,83 +172,65 @@ button[type="submit"]:hover {
     background-color: #b81631;
 }
 
-button[type="submit"]:active {
-    transform: scale(0.98);
-}
-
-.forgot-password {
-    position: absolute;
-    right: 10px;
-    top: 20%;
-    transform: translateY(-50%);
-    font-size: 13px;
+.login {
     color: var(--Purple);
-    text-decoration: none;
-    transition: color 0.3s ease;
 }
 
-.g-recaptcha {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    width: 404px;
-    animation: fadeIn 0.5s ease-out 0.3s both;
-}
-
-
-.tema{
+.tema {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
-#checkboxInput {
-  display: none;
+#checkboxinput {
+    display: none;
 }
 
-.toggleSwitch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 50px;
-  height: 30px;
-  background-color: rgb(82, 82, 82);
-  border-radius: 20px;
-  cursor: pointer;
-  transition-duration: .2s;
-  margin-right: 50px;
+.toggleswitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background-color: rgb(82, 82, 82);
+    border-radius: 20px;
+    cursor: pointer;
+    transition-duration: .2s;
+    margin-right: 50px;
 }
 
-.toggleSwitch::after {
-  content: "";
-  position: absolute;
-  height: 10px;
-  width: 10px;
-  left: 5px;
-  background-color: transparent;
-  border-radius: 50%;
-  transition-duration: .2s;
-  box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
-  border: 5px solid white;
+.toggleswitch::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    left: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition-duration: .2s;
+    box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+    border: 5px solid white;
 }
 
-#checkboxInput:checked+.toggleSwitch::after {
-  transform: translateX(100%);
-  transition-duration: .2s;
-  background-color: white;
+#checkboxinput:checked + .toggleswitch::after {
+    transform: translateX(100%);
+    transition-duration: .2s;
+    background-color: white;
 }
 
-#checkboxInput:checked+.toggleSwitch {
-  background-color: var(--Purple);
-  transition-duration: .2s;
+#checkboxinput:checked + .toggleswitch {
+    background-color: var(--Purple);
+    transition-duration: .2s;
 }
 
 @media screen and (max-width: 1024px) {
-    body{
-        background-color: var(--Background-dark);
 
+    body {
+        background-color: var(--Background-dark);
     }
+
     .container {
         display: flex;
         align-items: center;
@@ -242,7 +240,8 @@ button[type="submit"]:active {
         height: auto;
     }
 
-    .login-section, .image-section {
+    .login-section,
+    .image-section {
         width: 100%;
         max-width: 100vh;
     }
@@ -251,5 +250,4 @@ button[type="submit"]:active {
         height: 200px;
         border-radius: 0;
     }
-
 }

@@ -1,34 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Início</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <title>Home - CineStar</title>
 </head>
 <body>
-<div th:if="${mensagemSucessoR}">
-    <p  th:text="${mensagemSucessoR}"></p>
-</div>
-<a th:href="@{/review}">Add Review</a>
-<table>
-    <thead>
-    <tr>
-        <th>Nome do Filme</th>
-        <th>Desc do filme</th>
-        <th>Nota do filme</th>
-        <th>URL capa do filme</th>
-        <th>Data assistido</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="review:${reviews}">
-        <td th:text="${review.nomeFilme}"></td>
-        <td th:text="${review.reviewDesc}"></td>
-        <td th:text="${review.nota}"></td>
-        <td th:text="${review.urlCapaFilme}"></td>
-        <td th:text="${review.dataAssistido}"></td>
-        <td><a class="button" th:href="@{/editarReview/{id}(id=${review.id})}">Editar</a><a class="button" th:href="@{/excluir/{id}(id=${review.id})}">Deletar</a></td>
-    </tr>
-    </tbody>
-</table>
+<header>
+    <img src="/css/images/logo.svg" alt="">
+
+    <div class="header">
+        <input type="checkbox" id="checkboxInput">
+        <label for="checkboxInput" class="toggleSwitch"></label>
+        <div class="login">
+            <h1>Username:</h1>
+            <h1></h1>
+        </div>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="titulo">
+            <h1>Suas avaliações</h1>
+            <button><a th:href="@{/review}">+ Avaliar</a></button>
+        </div>
+        <hr>
+        <div class="info" th:each="review:${reviews}">
+            <div class="capa">
+                <img th:src="${review.urlCapaFilme}">
+            </div>
+            <div class="informacoes">
+                <h1 th:text="${review.nomeFilme}"></h1>
+                <p th:text="${review.reviewDesc}">
+                </p>
+            </div>
+            <div class="bottom">
+                <div class="nota">
+                    <img src="/css/images/Star%204.svg" alt="Estrela rosa">
+                    <h1 th:text="${review.nota}"></h1>
+                </div>
+
+                <div class="enviar">
+                    <a th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
+                    <button type="submit" th:href="@{/editarReview/{id}(id=${review.id})}" >Editar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    const checkbox = document.getElementById("checkboxInput");
+
+// tema salvo
+const tema = localStorage.getItem("theme") || "light";
+
+if (tema === "dark") {
+document.body.classList.add("dark");
+checkbox.checked = true;
+}
+
+checkbox.addEventListener("change", () => {
+const isDark = checkbox.checked;
+
+document.body.classList.toggle("dark", isDark);
+localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+</script>
 </body>
 </html>
