@@ -8,6 +8,7 @@
     --Text-dark: #FFFFFF;
     --Header: #222222;
     --Backgound-form: #171717;
+    --Data: #B5B1B1;
 }
 
 body.dark {
@@ -40,22 +41,6 @@ header {
     flex-direction: row;
 }
 
-
-input[type="text"] {
-    color: var(--Text-dark);
-    background-color: var(--Header);
-    width: 404px;
-    height: 35px;
-    padding: 0 0.5rem;
-    border: 1px solid #dddfe2;
-    border-radius: 13px;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    font-family: "Inter", sans-serif;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -77,7 +62,7 @@ input[type="text"] {
     margin-left: -12px;
 }
 
-button[type="submit"] {
+.editar{
     width: 120px;
     height: 40px;
     padding: 0;
@@ -116,7 +101,7 @@ section {
     font-size: 30px;
 }
 
-button {
+.editar{
     width: 120px;
     height: 40px;
     padding: 0;
@@ -134,17 +119,24 @@ button {
     justify-content: center;
 }
 
-button a {
+.editar a {
     text-decoration: none;
     color: var(--Text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--Text-dark);
+    width: 120px;
+    height: 40px;
 }
 
-button:hover {
+.editar:hover {
     background-color: var(--Background-light);
     color: var(--Purple);
 }
 
-button a:hover {
+.editar a:hover {
     color: var(--Purple);
 }
 
@@ -178,8 +170,25 @@ button a:hover {
     min-width: 120px;
 }
 
+.data h1{
+    font-size: 37px;
+    color: var(--white);
+}
+
+.data{
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     font-size: 12px;
+}
+
+.data p{
+    color: var(--data);
+}
+
 .nota {
     display: flex;
+    gap: 18px;
 }
 
 .nota img {
@@ -250,6 +259,74 @@ button a:hover {
     transition-duration: .2s;
 }
 
+/* botao logout do uiverse */
+
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: var(--Purple);
+}
+
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  margin-left: 7px;
+}
+
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
 @media screen and (max-width: 1346px) {
     section {
         margin: 30px;
@@ -270,6 +347,13 @@ button a:hover {
         align-items: center;
         margin-left: 0;
         max-width: 100%;
+    }
+
+    .data{
+        display: block;
+        align-items: center;
+        gap: 10px;
+        color: var(--Data);
     }
 
     .bottom {
