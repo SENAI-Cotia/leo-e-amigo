@@ -41,19 +41,8 @@ public class UserController {
     return "Index";
     }
 
-//    @PostMapping("/login")
-//    public String logar(@ModelAttribute User userR){
-//        User user=userRepository.findByEmail(userR.getEmail()).orElseThrow(()-> new RuntimeException("Credenciais inválidas"));
-//        if (!user.getSenha().equals(userR.getSenha())){
-//            throw new RuntimeException("Credenciais inválidas");
-//        }
-//        return "redirect:/Home";
-//    }
-
     @Autowired
     private UserService userService;
-
-// REMOVER o @Autowired do UserRepository se não usar mais em outros métodos
 
     @PostMapping("/salvar")
     public String cadastrar(@ModelAttribute User userR, RedirectAttributes redirectAttributes) {
