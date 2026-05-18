@@ -24,6 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/cadastro", "/","/salvar").permitAll() // Rota publicas
+                .requestMatchers("/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated() // Qualquer rota ele vai privar
         ).formLogin(form -> form
                 .loginPage("/")
