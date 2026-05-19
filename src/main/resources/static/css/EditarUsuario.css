@@ -1,0 +1,377 @@
+:root {
+    --Purple: #F5294B;
+    --White: #FFFFFF;
+    --Black: #000;
+    --Background-light: #f0f2f5;
+    --Background-dark: #1C1E21;
+    --Text-light: #333333;
+    --Text-dark: #FFFFFF;
+    --Header: #222222;
+    --Backgound-form: #171717;
+}
+
+body.dark {
+    background-color: var(--Background-light);
+    color: var(--Text-dark);
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+body {
+    background-color: var(--Black);
+    color: var(--Text-dark);
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+header {
+    background-color: var(--Header);
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.input-group{
+}
+
+.input-group:focus{
+    border-color: var(--Purple);
+    box-shadow: 0 0 0 1px var(--Purple);
+    outline: none;
+    color: var(--Text-dark);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-right: 20px;
+}
+
+.login h1 {
+    color: var(--Text-dark);
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: -12px;
+}
+
+section {
+    background-color: var(--Header);
+    color: var(--Text-dark);
+    border-radius: 12px;
+    margin: 50px 620px 0 30px;
+    min-height: 700px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: -15px;
+}
+
+.bottom{
+    display: block;
+    background-color: var(--Backgound-form);
+    border: none;
+    color: var(--White);
+    font-size: 16px;
+    width: 100%;
+    max-width: 680px;
+    min-width: 120px;
+    width: 704px;
+    height: 65px;
+    border-radius: 15px;
+    margin-top: 8px;
+    padding: 0 0 0 15px;
+}
+
+.bottom:focus{
+    border-color: var(--Purple);
+    box-shadow: 0 0 0 1px var(--Purple);
+    outline: none;
+    color: var(--Text-dark);
+}
+
+
+.info{
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.botoes a{
+    text-decoration: none;
+    color: var(--Text-dark);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.botoes a:hover{
+     color: var(--Purple);
+     transition: 0.3s;
+}
+
+.botoes button{
+    width: 120px;
+    height: 40px;
+    padding: 0;
+    background-color: var(--Purple);
+    color: var(--White);
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.botoes button:hover{
+    background-color: var(--White);
+    color: var(--Purple);
+    transition: 0.3s;
+}
+
+.input-group label{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.titulo h1 {
+    font-size: 30px;
+}
+
+#checkboxinput {
+    display: none;
+}
+
+.toggleswitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background-color: rgb(82, 82, 82);
+    border-radius: 20px;
+    cursor: pointer;
+    transition-duration: .2s;
+    margin-right: 50px;
+}
+
+.toggleswitch::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    left: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition-duration: .2s;
+    box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+    border: 5px solid white;
+}
+
+#checkboxinput:checked + .toggleswitch::after {
+    transform: translateX(100%);
+    transition-duration: .2s;
+    background-color: white;
+}
+
+#checkboxinput:checked + .toggleswitch {
+    background-color: var(--Purple);
+    transition-duration: .2s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+     filter: invert(1);
+     cursor: pointer;
+}
+
+
+/* botao logout do uiverse */
+
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: var(--Purple);
+}
+
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  margin-left: 7px;
+}
+
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+@media screen and (max-width: 1324px){
+
+    section{
+        margin: 30px;
+    }
+
+    .conteudo{
+        flex-direction: column;
+        gap: 30px;
+    }
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
+
+
+@media screen and (max-width: 768px){
+    body{
+        height: auto;
+    }
+
+    header{
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    header img{
+        width: 140px;
+    }
+
+    .header{
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .login{
+        gap: 10px;
+        margin-right: 0;
+    }
+
+    .login h1{
+        font-size: 12px;
+    }
+
+    section{
+        margin: 15px;
+        min-height: auto;
+    }
+
+    .titulo h1{
+        font-size: 24px;
+    }
+
+    .bottom{
+        width: 100%;
+    }
+    .toggleSwitch{
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 480px){
+
+    .titulo{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .categoria{
+        justify-content: flex-start;
+    }
+
+    .login{
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2px;
+    }
+
+    .login h1{
+        font-size: 11px;
+    }
+
+    .input-descreva{
+        height: 180px;
+    }
+}

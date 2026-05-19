@@ -62,24 +62,6 @@ header {
     margin-left: -12px;
 }
 
-.editar{
-    width: 120px;
-    height: 40px;
-    padding: 0;
-    background-color: var(--Purple);
-    color: var(--White);
-    border: none;
-    border-radius: 14px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 section {
     background-color: var(--Header);
     color: var(--Text-dark);
@@ -117,6 +99,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .editar a {
@@ -151,6 +134,39 @@ section {
     padding: 10px;
 }
 
+.informa-nomes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nome{
+   font-size: 25px;
+   font-weight: 700;
+   margin-left: 10px;
+}
+
+.botoes{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    gap: 15px;
+}
+
+.excluir {
+    background-color: var(--Backgound-form);
+    border: none;
+    text-decoration: none;
+    color: var(--Text-dark);
+    font-weight: 200;
+    font-size: 17px;
+}
+
+.excluir:hover{
+    color: var(--Purple);
+    transition: 0.3s;
+}
 .capa img {
     width: 150px;
     height: 220px;
