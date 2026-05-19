@@ -44,15 +44,24 @@
                 <p>Ainda não há nenhum usuário cadastrado!</p>
             </div>
             <div class="info" th:each="u:${users}">
-                <p th:text="${u.nome}"></p>
-                <p th:text="${u.email}"></p>
+                <div class="informacoesAdmin" >
+                    <h1 th:text="${u.nome}"></h1>
+                    <p th:text="${u.email}"></p>
+                </div>
+                <div class="bottom">
+                    <div class="enviar">
+                        <a>Excluir</a>
+                        <button type="submit" class="editar">Editar</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- VISÃO USER: lista de reviews -->
         <div th:unless="${isAdmin}">
             <div th:if="${#lists.isEmpty(reviews)}" class="sem-reviews">
-                <p>Você ainda não tem nenhuma avaliação. Clique em "+ Avaliar" para começar!</p>
+                <p>Você ainda não tem nenhuma avaliação. <br>
+                    Clique em "+ Avaliar" para começar!</p>
             </div>
             <div class="info" th:each="review:${reviews}">
                 <div class="container">
@@ -73,7 +82,7 @@
                         <h1 th:text="${review.nota}"></h1>
                     </div>
                     <div class="enviar">
-                        <a th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
+                        <a  class="tagA" th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
                         <a th:href="@{/editarReview/{id}(id=${review.id})}"><button class="editar">Editar</button></a>
                     </div>
                 </div>
