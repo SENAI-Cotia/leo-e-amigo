@@ -41,6 +41,7 @@
         <hr>
 
         <form class="conteudo" th:object="${review}" method="post" th:action="@{/salvarReview}" >
+            <input type="hidden" th:field="*{id}">
             <div class="top1">
                 <input type="text" class="input-nome" th:field="*{nomeFilme}" placeholder="Nome do filme:" required>
                 <textarea class="input-descreva" th:field="*{reviewDesc}" placeholder="Escreva aqui:"></textarea>
@@ -56,7 +57,8 @@
                 </div>
 
                 <div class="enviar">
-                    <button class="tagA" type="button" onclick="location.reload()">Limpar dados</button>
+                    <!-- a linha abaixo redireciona para uma pagina igual porém vazia-->
+                    <button class="tagA" type="button" onclick="window.location.href='/review'">Limpar dados</button>
                     <button type="submit" class="editar">Confirmar</button>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import br.com.cinestar.repositories.UserRepository;
 
 import br.com.cinestar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -29,6 +30,9 @@ public class UserController {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping
     public String getUsers(Model model,
                            @RequestParam(value = "error", required = false) String error,
@@ -47,6 +51,34 @@ public class UserController {
     public String formUser(Model model){
         model.addAttribute("user",new User());
         return "Cadastro";
+    }
+
+    @GetMapping("/editarUsuario/{id}")
+    public String formEditarUsuario(@PathVariable Long id, Model model) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        model.addAttribute("user", user);
+        return "EditarUsuario";
+    }
+
+    @PostMapping("/salvarEdicaoUsuario")
+    public String salvarEdicaoUsuario(@ModelAttribute User userR,
+                                      @RequestParam(value = "novaSenha", required = false) String novaSenha,
+                                      RedirectAttributes redirectAttributes) {
+        User userExistente = userRepository.findById(userR.getId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        userExistente.setNome(userR.getNome());
+        userExistente.setUsername(userR.getUsername());
+        userExistente.setEmail(userR.getEmail());
+
+        if (novaSenha != null && !novaSenha.trim().isEmpty()) {
+            userExistente.setSenha(passwordEncoder.encode(novaSenha));
+        }
+
+        userRepository.save(userExistente);
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Usuário atualizado com sucesso!");
+        return "redirect:/Home";
     }
 
     @GetMapping("/Home")
