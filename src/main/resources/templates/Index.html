@@ -44,15 +44,13 @@
                 <p>Ainda não há nenhum usuário cadastrado!</p>
             </div>
             <div class="info" th:each="u:${users}">
-                <p th:text="${u.nome}"></p>
-                <p th:text="${u.email}"></p>
-                <a th:href="@{/editarUsuario/{id}(id=${u.id})}"><button class="editar">Editar</button></a>
-            </div>
-                <div class="bottom">
-                    <div class="enviar">
-                        <a>Excluir</a>
-                        <button type="submit" class="editar">Editar</button>
-                    </div>
+                <div class="informa-nomes">
+                    <p class="nome" th:text="${u.nome}"></p>
+                    <p th:text="${u.email}"></p>
+                </div>
+                <div class="botoes">
+                    <button class="excluir">Excluir</button>
+                    <a th:href="@{/editarUsuario/{id}(id=${u.id})}" class="editar"><button class="editar">Editar</button></a>
                 </div>
             </div>
         </div>
