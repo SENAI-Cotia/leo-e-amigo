@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.lang.constant.ModuleDesc;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,6 +89,7 @@ public class UserController {
 
         boolean isAdmin = user.getRole().equals("ROLE_ADMIN");
         model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("username", user.getUsername());
 
         if (isAdmin) {
             List<User> users = userRepository.findAll()
@@ -98,8 +100,13 @@ public class UserController {
         } else {
             List<Review> reviews = reviewRepository.findByUser(user);
             model.addAttribute("reviews", reviews);
+
+            List<Review> top10 = reviews.stream()
+                    .sorted(Comparator.comparingDouble(Review::getNota).reversed())
+                    .limit(10)
+                    .collect(java.util.stream.Collectors.toList());
+            model.addAttribute("top10", top10);
         }
-        model.addAttribute("username", user.getUsername());
 
         return "Index";
     }

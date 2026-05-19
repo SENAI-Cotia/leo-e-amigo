@@ -48,13 +48,6 @@
                 <p th:text="${u.email}"></p>
                 <a th:href="@{/editarUsuario/{id}(id=${u.id})}"><button class="editar">Editar</button></a>
             </div>
-                <div class="bottom">
-                    <div class="enviar">
-                        <a>Excluir</a>
-                        <button type="submit" class="editar">Editar</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- VISÃO USER: lista de reviews -->
@@ -82,31 +75,50 @@
                         <h1 th:text="${review.nota}"></h1>
                     </div>
                     <div class="enviar">
-                        <a  class="tagA" th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
+                        <a class="tagA" th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
                         <a th:href="@{/editarReview/{id}(id=${review.id})}"><button class="editar">Editar</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- TOP 10 -->
+    <aside class="top10" th:unless="${isAdmin}">
+        <h2>Mais bem avaliados</h2>
+        <hr>
+        <div th:if="${#lists.isEmpty(top10)}" class="sem-top">
+            <p>Nenhuma avaliação ainda!</p>
+        </div>
+        <div class="top10-item" th:each="review, i : ${top10}">
+            <span class="top10-pos" th:text="${i.index + 1}"></span>
+            <img th:src="${review.urlCapaFilme}" alt="Capa">
+            <div class="top10-info">
+                <p class="top10-nome" th:text="${review.nomeFilme}"></p>
+                <span class="top10-data" th:text="${review.dataAssistido}"></span>
+            </div>
+            <div class="top10-nota">
+                <img src="/css/images/Star%204.svg" alt="Estrela rosa">
+                <span th:text="${review.nota}"></span>
+            </div>
+        </div>
+    </aside>
 </main>
 <script>
     const checkbox = document.getElementById("checkboxinput");
 
-// tema salvo
-const tema = localStorage.getItem("theme") || "light";
+    const tema = localStorage.getItem("theme") || "light";
 
-if (tema === "dark") {
-document.body.classList.add("dark");
-checkbox.checked = true;
-}
+    if (tema === "dark") {
+        document.body.classList.add("dark");
+        checkbox.checked = true;
+    }
 
-checkbox.addEventListener("change", () => {
-const isDark = checkbox.checked;
-
-document.body.classList.toggle("dark", isDark);
-localStorage.setItem("theme", isDark ? "dark" : "light");
-});
+    checkbox.addEventListener("change", () => {
+        const isDark = checkbox.checked;
+        document.body.classList.toggle("dark", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
 </script>
 </body>
 </html>
