@@ -85,6 +85,14 @@ public class Review {
     public void setDataAssistido(LocalDate dataAssistido) {
         this.dataAssistido = dataAssistido;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
 
 

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import br.com.cinestar.models.Review;
+import br.com.cinestar.repositories.ReviewRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.lang.constant.ModuleDesc;
 import java.util.ArrayList;
@@ -22,9 +26,20 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
     @GetMapping
-    public String getUsers(Model model){
-        model.addAttribute("user",new User());
+    public String getUsers(Model model,
+                           @RequestParam(value = "error", required = false) String error,
+                           @RequestParam(value = "logout", required = false) String logout){
+        model.addAttribute("user", new User());
+        if (error != null) {
+            model.addAttribute("mensagemErro", "Email ou senha inválidos. Tente novamente.");
+        }
+        if (logout != null) {
+            model.addAttribute("mensagemSucesso", "Você saiu com sucesso.");
+        }
         return "Login";
     }
 
@@ -35,10 +50,26 @@ public class UserController {
     }
 
     @GetMapping("/Home")
-    public String home(Model model){
-    List <User> users =userRepository.findAll();
-    model.addAttribute("users",users);
-    return "Index";
+    public String home(Model model, @AuthenticationPrincipal UserDetails userDetails){
+        User user = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        boolean isAdmin = user.getRole().equals("ROLE_ADMIN");
+        model.addAttribute("isAdmin", isAdmin);
+
+        if (isAdmin) {
+            List<User> users = userRepository.findAll()
+                    .stream()
+                    .filter(u -> !u.getRole().equals("ROLE_ADMIN"))
+                    .collect(java.util.stream.Collectors.toList());
+            model.addAttribute("users", users);
+        } else {
+            List<Review> reviews = reviewRepository.findByUser(user);
+            model.addAttribute("reviews", reviews);
+        }
+        model.addAttribute("username", user.getUsername());
+
+        return "Index";
     }
 
     @Autowired
