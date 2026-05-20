@@ -59,8 +59,9 @@ body {
     margin: 0;
     height: 100vh;
 }
+
 main{
-max-height: 80vh;
+    max-height: 80vh;
 }
 
 header {
@@ -107,13 +108,19 @@ section {
     overflow-y:auto;
 }
 section::-webkit-scrollbar{
-    background-color: white;
+    background-color: var(--Backgound-Text);
+    width: 10px;
+    height: 10px;
 }
 
 section::-webkit-scrollbar-thumb{
-    background-color:red;
+    background-color: var(--Purple);
+    border-radius:20px;
 }
 
+section::-webkit-scrollbar-corner{
+    background: none;
+}
 .titulo {
     display: flex;
     justify-content: space-between;
