@@ -163,7 +163,16 @@ public class UserController {
             redirectAttributes.addFlashAttribute("mensagemErro", "Username não pode conter espaços.");
             return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
         }
-        
+        if (senha != null && !senha.trim().isEmpty()) {
+            if (senha.length() < 8) {
+                redirectAttributes.addFlashAttribute("mensagemErro", "Senha deve ter no mínimo 8 caracteres.");
+                return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+            }
+            if (!senha.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
+                redirectAttributes.addFlashAttribute("mensagemErro", "Senha deve ter pelo menos um caractere especial.");
+                return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+            }
+        }
         return null;
     }
 
