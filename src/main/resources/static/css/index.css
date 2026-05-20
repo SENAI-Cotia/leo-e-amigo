@@ -2,9 +2,9 @@
     --Purple: #F5294B;
     --White: #FFFFFF;
     --Black: #000;
-    --Background-light: #f0f2f5;
+    --Background-light: #F5F7FA;
     --Background-dark: #1C1E21;
-    --Text-light: #333333;
+    --Text-light: #2E2E2E;
     --Text-dark: #FFFFFF;
     --Header: #222222;
     --Backgound-form: #171717;
@@ -13,10 +13,43 @@
 
 body.dark {
     background-color: var(--Background-light);
-    color: var(--Text-dark);
     font-family: "Inter", sans-serif;
     margin: 0;
     height: 100vh;
+
+    .info{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    section{
+        background-color: var(--White);
+    }
+    .titulo{
+        color: var(--Text-light);
+    }
+
+    hr{
+        border: solid 1px var(--Text-light);
+    }
+
+    .tagA{
+        color: var(--Text-light);
+    }
+
+    .editar:hover{
+        background-color: var(--White);
+    }
+
+    .excluir{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    .excluir:hover{
+        color: var(--Purple);
+        transition: 0.3s;
+    }
 }
 
 body {
@@ -173,7 +206,7 @@ section {
     border-radius: 12px;
 }
 
-.bottom {
+.baixo {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -402,7 +435,7 @@ section {
         gap: 10px;
     }
 
-    .bottom {
+    .baixo {
         width: 100%;
         align-items: center;
     }
@@ -413,6 +446,16 @@ section {
 
     .enviar {
         justify-content: center;
+    }
+
+    .excluir{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    .excluir:hover{
+        transition: 0.3s;
+        color: var(--Purple);
     }
 }
 
@@ -509,7 +552,7 @@ section {
         line-height: 1.6;
     }
 
-    .bottom {
+    .baixo {
         width: 100%;
         align-items: center;
         margin-right: 0;
