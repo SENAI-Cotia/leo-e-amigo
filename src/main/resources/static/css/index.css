@@ -40,6 +40,16 @@ body.dark {
     .editar:hover{
         background-color: var(--White);
     }
+
+    .excluir{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    .excluir:hover{
+        color: var(--Purple);
+        transition: 0.3s;
+    }
 }
 
 body {
@@ -436,6 +446,16 @@ section {
 
     .enviar {
         justify-content: center;
+    }
+
+    .excluir{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    .excluir:hover{
+        transition: 0.3s;
+        color: var(--Purple);
     }
 }
 
