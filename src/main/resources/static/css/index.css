@@ -59,6 +59,9 @@ body {
     margin: 0;
     height: 100vh;
 }
+main{
+max-height: 80vh;
+}
 
 header {
     background-color: var(--Header);
@@ -100,7 +103,15 @@ section {
     color: var(--Text-dark);
     border-radius: 12px;
     margin: 50px 620px 0 30px;
-    min-height: 700px;
+    max-height: 700px;
+    overflow-y:auto;
+}
+section::-webkit-scrollbar{
+    background-color: white;
+}
+
+section::-webkit-scrollbar-thumb{
+    background-color:red;
 }
 
 .titulo {
