@@ -7,54 +7,86 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/index.css}">
-    <title>Home - CineStar</title>
+
+    <title>Avaliar - CineStar</title>
 </head>
 <body>
 <header>
-    <img src="/css/images/logo.svg" alt="">
+    <a th:href="@{/Home}"><img src="/css/images/logo.svg" alt=""></a>
 
     <div class="header">
         <input type="checkbox" id="checkboxinput">
         <label for="checkboxinput" class="toggleswitch"></label>
         <div class="login">
-            <h1>Username:</h1>
-            <button class="Btn">
-                <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg>
-                </div>
-                <div class="text">Logout</div>
+            <a th:unless="${isAdmin}" th:href="@{/editarUsuario/{id}(id=${userId})}">
+                <h1 th:text="${username}"></h1>
+            </a>
+            <h1 th:if="${isAdmin}" th:text="${username}"></h1>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn">
+                    <div class="sign">
+                        <svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg>
+                    </div>
+                    <div class="text">Logout</div>
+                </button>
+            </form>
         </div>
     </div>
 </header>
 <main>
     <section>
         <div class="titulo">
-            <h1>Suas avaliações</h1>
-            <button class="editar"><a th:href="@{/review}" >+ Avaliar</a></button>
+            <h1 th:if="${isAdmin}">Usuários cadastrados</h1>
+            <h1 th:unless="${isAdmin}">Suas avaliações</h1>
+            <button class="editar" th:unless="${isAdmin}"><a th:href="@{/review}">+ Avaliar</a></button>
         </div>
         <hr>
-        <div class="info" th:each="review:${reviews}">
-            <div class="container">
-                <div class="capa">
-                    <img th:src="${review.urlCapaFilme}">
+
+        <!-- Visão do admin: lista de usuários -->
+        <div th:if="${isAdmin}">
+            <div th:if="${#lists.isEmpty(users)}" class="sem-reviews">
+                <p>Ainda não há nenhum usuário cadastrado!</p>
+            </div>
+            <div class="info" th:each="u:${users}">
+                <div class="informa-nomes">
+                    <p class="nome" th:text="${u.nome}"></p>
+                    <p th:text="${u.email}"></p>
                 </div>
-                <div class="informacoes">
-                    <div class="data">
-                        <h1 th:text="${review.nomeFilme}"></h1>
-                        <p th:text="${review.dataAssistido}"></p>
-                    </div>
-                    <p th:text="${review.reviewDesc}">
-                    </p>
+                <div class="botoes">
+                    <a th:href="@{/excluirUsuario/{id}(id=${u.id})}" class="excluir">Excluir</a>
+                    <a th:href="@{/editarUsuario/{id}(id=${u.id})}" class="editar"><button class="editar">Editar</button></a>
                 </div>
             </div>
-            <div class="bottom">
-                <div class="nota">
-                    <img src="/css/images/Star%204.svg" alt="Estrela rosa">
-                    <h1 th:text="${review.nota}"></h1>
-                </div>
+        </div>
 
-                <div class="enviar">
-                    <a th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
-                    <button type="submit" th:href="@{/editarReview/{id}(id=${review.id})}" class="editar    " >Editar</button>
+        <!-- Visão do usuário: lista de reviews -->
+        <div th:unless="${isAdmin}">
+            <div th:if="${#lists.isEmpty(reviews)}" class="sem-reviews">
+                <p>Você ainda não tem nenhuma avaliação. <br>
+                    Clique em "+ Avaliar" para começar!</p>
+            </div>
+            <div class="info" th:each="review:${reviews}">
+                <div class="container">
+                    <div class="capa">
+                        <img th:src="${review.urlCapaFilme}">
+                    </div>
+                    <div class="informacoes">
+                        <div class="data">
+                            <h1 th:text="${review.nomeFilme}"></h1>
+                            <p th:text="${review.dataAssistido}"></p>
+                        </div>
+                        <p th:text="${review.reviewDesc}"></p>
+                    </div>
+                </div>
+                <div class="baixo">
+                    <div class="nota">
+                        <img src="/css/images/Star%204.svg" alt="Estrela rosa">
+                        <h1 th:text="${review.nota}"></h1>
+                    </div>
+                    <div class="enviar">
+                        <a  class="tagA" th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
+                        <a th:href="@{/editarReview/{id}(id=${review.id})}"><button class="editar">Editar</button></a>
+                    </div>
                 </div>
             </div>
         </div>

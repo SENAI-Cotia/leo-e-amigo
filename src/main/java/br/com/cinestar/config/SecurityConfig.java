@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .loginPage("/")
                 .loginProcessingUrl("/login")   // <- essa linha garante que o Security intercepta o POST /login
                 .defaultSuccessUrl("/Home", true)
+                .failureUrl("/?error")
                 .permitAll()
         ).logout(logout -> logout
                 .logoutSuccessUrl("/?logout")

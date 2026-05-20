@@ -24,24 +24,25 @@ body {
 }
 
 .login-section.dark{
-  background-color: var(--Background-light);
-
-  h1, p{
+    background-color: var(--Background-light);
+    transition: 0.5s;
+    h1, p{
     color: var(--Text-light);
-  }
+    }
 
-  label{
+    label{
     color: var(--Text-light);
-  }
+    }
 
-  input[type="email"], input[type="password"]{
+    input[type="email"], input[type="password"]{
     background-color: var(--Background-light);
     color: var(--Text-light);
-  }
+    }
 }
 
 .login-section {
     background-color: var(--Background-dark);
+    transition: 0.5s;
     padding: 2rem;
     flex: 1;
     display: flex;
@@ -218,27 +219,61 @@ button[type="submit"]:active {
 }
 
 @media screen and (max-width: 1024px) {
-    body{
-        background-color: var(--Background-dark);
-
-    }
     .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
         flex-direction: column-reverse;
+        min-height: 100vh;
         height: auto;
     }
 
-    .login-section, .image-section {
+    .login-section {
+        flex: none;
         width: 100%;
-        max-width: 100vh;
+        max-width: 100%;
+        padding: 2.5rem 1.5rem;
     }
 
     .image-section {
-        height: 200px;
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        height: 340px;
         border-radius: 0;
     }
 
+    .input-group,
+    button[type="submit"] {
+        max-width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .login-section {
+        padding: 2rem 1.25rem;
+    }
+
+    .image-section {
+        height: 360px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        font-size: 0.95rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+    }
+
+    .toggleSwitch {
+        margin-right: 0;
+    }
 }

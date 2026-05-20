@@ -7,20 +7,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/avaliar.css}">
+    <link rel="icon" type="image/png" href="/css/images/t2.png">
     <title>Home - CineStar</title>
+
 </head>
 <body>
 <header>
-    <img src="/css/images/logo.svg" alt="">
+    <a th:href="@{/Home}"><img src="/css/images/logo.svg" alt=""></a>
 
     <div class="header">
         <input type="checkbox" id="checkboxinput">
         <label for="checkboxinput" class="toggleswitch"></label>
         <div class="login">
-            <h1>Username:</h1>
-            <button class="Btn">
-                <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
-                <div class="text">Logout</div>
+            <a th:unless="${isAdmin}" th:href="@{/editarUsuario/{id}(id=${userId})}">
+                <h1 th:text="${username}"></h1>
+            </a>
+            <h1 th:if="${isAdmin}" th:text="${username}"></h1>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn">
+                    <div class="sign">
+                        <svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg>
+                    </div>
+                    <div class="text">Logout</div>
+                </button>
+            </form>
         </div>
     </div>
 </header>
@@ -36,6 +46,7 @@
         <hr>
 
         <form class="conteudo" th:object="${review}" method="post" th:action="@{/salvarReview}" >
+            <input type="hidden" th:field="*{id}">
             <div class="top1">
                 <input type="text" class="input-nome" th:field="*{nomeFilme}" placeholder="Nome do filme:" required>
                 <textarea class="input-descreva" th:field="*{reviewDesc}" placeholder="Escreva aqui:"></textarea>
@@ -44,14 +55,15 @@
                 <input type="date" class="input-nome"  th:field="*{dataAssistido}" placeholder="Data:">
                 <textarea class="input-descreva" th:field="*{urlCapaFilme}" placeholder="URL da imagem:" required></textarea>
             </div>
-            <div class="bottom">
+            <div class="baixo">
                 <div class="avaliar">
                     <img src="/css/images/Star%204.svg" alt="Estrela rosa">
                     <input th:field="*{nota}" class="avalie" max="5" min="1" type="number"  placeholder="Nota:" required>
                 </div>
 
                 <div class="enviar">
-                    <a class="limpar" >Limpar Dados</a>
+                    <!-- a linha abaixo redireciona para uma pagina igual porém vazia-->
+                    <button class="tagA" type="button" onclick="window.location.href='/review'">Limpar dados</button>
                     <button type="submit" class="editar">Confirmar</button>
                 </div>
             </div>
