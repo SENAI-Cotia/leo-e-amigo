@@ -12,10 +12,68 @@
 
 body.dark {
     background-color: var(--Background-light);
-    color: var(--Text-dark);
     font-family: "Inter", sans-serif;
     margin: 0;
     height: 100vh;
+
+    .info{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+    }
+
+    section{
+        background-color: var(--White);
+    }
+    .titulo{
+        color: var(--Text-light);
+    }
+
+    hr{
+        border: solid 1px var(--Text-light);
+    }
+
+    .tagA{
+        color: var(--Text-light);
+    }
+
+    .top1 .input-nome,
+    .input-descreva,
+    input[type="number"],
+    input[type="date"],
+    input[type="text"]{
+        background-color: var(--Background-light);
+    }
+
+    .top1 .input-nome,
+    .input-descreva,
+    input[type="number"],
+    input[type="date"],
+    input[type="text"]::placeholder{
+        color: var(--Text-light);
+    }
+
+    input::placeholder{
+        color: var(--Text-light);
+    }
+
+    .input-descreva::placeholder{
+        color: var(--Text-light);
+    }
+
+    .tagA{
+        background-color: var(--White);
+        color: var(--Text-light);
+    }
+
+    .tagA:hover {
+        color: var(--Purple);
+        transition: 0.4s;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+         filter: invert(0);
+         cursor: pointer;
+    }
 }
 
 body {
@@ -155,7 +213,7 @@ input[type="date"] {
     font-family: "Inter", sans-serif;
 }
 
-.bottom {
+.baixo {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -437,7 +495,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         justify-content: flex-end;
     }
 
-    .bottom {
+    .baixo {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
