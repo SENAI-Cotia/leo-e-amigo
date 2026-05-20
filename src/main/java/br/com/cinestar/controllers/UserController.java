@@ -79,6 +79,9 @@ public class UserController {
             return "redirect:/editarUsuario/" + userR.getId();
         }
 
+        String erroValidacao = validarDadosUsuario(userR.getNome(), userR.getUsername(), novaSenha, userR.getId(), redirectAttributes);
+        if (erroValidacao != null) return erroValidacao;
+
         userExistente.setNome(userR.getNome());
         userExistente.setUsername(userR.getUsername());
         userExistente.setEmail(userR.getEmail());
@@ -107,10 +110,14 @@ public class UserController {
                     .collect(java.util.stream.Collectors.toList());
 
             model.addAttribute("users", users);
+            List<Object[]> top10Users = reviewRepository.findTop10UsersWithMostReviews(org.springframework.data.domain.PageRequest.of(0, 10));
+            model.addAttribute("top10Users", top10Users);
 
         } else {
             List<Review> reviews = reviewRepository.findByUser(user);
+            List<Review> top10 = reviewRepository.findTop10ByUserOrderByNotaDesc(user, org.springframework.data.domain.PageRequest.of(0, 10));
             model.addAttribute("reviews", reviews);
+            model.addAttribute("top10", top10);
 
         }
         model.addAttribute("username", user.getUsername());
@@ -141,6 +148,9 @@ public class UserController {
 
             return "redirect:/cadastro";
         }
+
+        String erroValidacao = validarDadosUsuario(userR.getNome(), userR.getUsername(), userR.getSenha(), null, redirectAttributes);
+        if (erroValidacao != null) return erroValidacao;
 
         userService.register(userR);
         redirectAttributes.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
