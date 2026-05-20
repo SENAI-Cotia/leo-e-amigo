@@ -91,6 +91,43 @@
             </div>
         </div>
     </section>
+    <!-- TOP10 Reviews - tela Usuario-->
+    <div class="titulo" th:unless="${#lists.isEmpty(top10)}">
+        <h1>Top 10 suas avaliações</h1>
+    </div>
+    <hr th:unless="${#lists.isEmpty(top10)}">
+    <div th:each="review, iterStat : ${top10}" class="info top-item">
+        <div class="top-posicao">
+            <p th:text="${iterStat.index + 1}"></p>
+        </div>
+        <div class="capa">
+            <img th:src="${review.urlCapaFilme}">
+        </div>
+        <div class="informacoes">
+            <h1 th:text="${review.nomeFilme}"></h1>
+            <span class="tag-data" th:text="${review.dataAssistido != null ? #temporals.format(review.dataAssistido, 'dd/MM/yyyy') : 'Sem data'}"></span>
+        </div>
+        <div class="nota">
+            <img src="/css/images/Star%204.svg" alt="Estrela rosa">
+            <h1 th:text="${review.nota}"></h1>
+        </div>
+    </div>
+
+    <!-- TOP10 Usuarios - tela admin-->
+    <div class="titulo" th:unless="${#lists.isEmpty(top10Users)}">
+        <h1>Top 10 usuários mais ativos</h1>
+    </div>
+    <hr th:unless="${#lists.isEmpty(top10Users)}">
+    <div th:each="row, iterStat : ${top10Users}" class="info top-item">
+        <div class="top-posicao">
+            <p th:text="${iterStat.index + 1}"></p>
+        </div>
+        <div class="informacoes">
+            <h1 th:text="${row[0].nome}"></h1>
+            <p th:text="${row[0].email}"></p>
+        </div>
+        <span class="tag-data" th:text="${row[1]} + ' reviews'"></span>
+    </div>
 </main>
 <script>
     const checkbox = document.getElementById("checkboxinput");

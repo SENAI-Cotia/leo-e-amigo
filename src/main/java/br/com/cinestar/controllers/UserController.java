@@ -79,6 +79,9 @@ public class UserController {
             return "redirect:/editarUsuario/" + userR.getId();
         }
 
+        String erroValidacao = validarDadosUsuario(userR.getNome(), userR.getUsername(), novaSenha, userR.getId(), redirectAttributes);
+        if (erroValidacao != null) return erroValidacao;
+
         userExistente.setNome(userR.getNome());
         userExistente.setUsername(userR.getUsername());
         userExistente.setEmail(userR.getEmail());
@@ -107,10 +110,14 @@ public class UserController {
                     .collect(java.util.stream.Collectors.toList());
 
             model.addAttribute("users", users);
+            List<Object[]> top10Users = reviewRepository.findTop10UsersWithMostReviews(org.springframework.data.domain.PageRequest.of(0, 10));
+            model.addAttribute("top10Users", top10Users);
 
         } else {
             List<Review> reviews = reviewRepository.findByUser(user);
+            List<Review> top10 = reviewRepository.findTop10ByUserOrderByNotaDesc(user, org.springframework.data.domain.PageRequest.of(0, 10));
             model.addAttribute("reviews", reviews);
+            model.addAttribute("top10", top10);
 
         }
         model.addAttribute("username", user.getUsername());
@@ -142,6 +149,9 @@ public class UserController {
             return "redirect:/cadastro";
         }
 
+        String erroValidacao = validarDadosUsuario(userR.getNome(), userR.getUsername(), userR.getSenha(), null, redirectAttributes);
+        if (erroValidacao != null) return erroValidacao;
+
         userService.register(userR);
         redirectAttributes.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
 
@@ -153,6 +163,27 @@ public class UserController {
         userRepository.deleteById(id);
 
         return "redirect:/Home";
+    }
+    private String validarDadosUsuario(String nome, String username, String senha, Long id, RedirectAttributes redirectAttributes) {
+        if (nome.matches(".*\\d.*")) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Nome não pode conter números.");
+            return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+        }
+        if (username.contains(" ")) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Username não pode conter espaços.");
+            return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+        }
+        if (senha != null && !senha.trim().isEmpty()) {
+            if (senha.length() < 8) {
+                redirectAttributes.addFlashAttribute("mensagemErro", "Senha deve ter no mínimo 8 caracteres.");
+                return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+            }
+            if (!senha.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
+                redirectAttributes.addFlashAttribute("mensagemErro", "Senha deve ter pelo menos um caractere especial.");
+                return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+            }
+        }
+        return null;
     }
 
 }
