@@ -16,12 +16,13 @@ body.dark {
     font-family: "Inter", sans-serif;
     margin: 0;
     height: 100vh;
-
+    transition: 0.5s;
     .info{
         color: var(--Text-light);
     }
 
     section{
+        transition: 0.5s;
         background-color: var(--White);
     }
 
@@ -48,6 +49,7 @@ body.dark {
 }
 
 body {
+    transition: 0.5s;
     background-color: var(--Black);
     color: var(--Text-dark);
     font-family: "Inter", sans-serif;
@@ -96,6 +98,7 @@ header {
 }
 
 section {
+    transition: 0.5s;
     background-color: var(--Header);
     color: var(--Text-dark);
     border-radius: 12px;

@@ -12,6 +12,7 @@
 }
 
 body.dark {
+    transition: 0.5s;
     background-color: var(--Background-light);
     font-family: "Inter", sans-serif;
     margin: 0;
@@ -23,6 +24,7 @@ body.dark {
     }
 
     section{
+        transition: 0.5s;
         background-color: var(--White);
     }
     .titulo{
@@ -50,9 +52,16 @@ body.dark {
         color: var(--Purple);
         transition: 0.3s;
     }
+
+    .sem-reviews p{
+        color: var(--Text-light);
+        font-size: 25px;
+        font-weight: 700;
+    }
 }
 
 body {
+    transition: 0.5s;
     background-color: var(--Black);
     color: var(--Text-dark);
     font-family: "Inter", sans-serif;
@@ -100,6 +109,7 @@ header {
 }
 
 section {
+    transition: 0.5s;
     background-color: var(--Header);
     color: var(--Text-dark);
     border-radius: 12px;
@@ -222,6 +232,7 @@ section::-webkit-scrollbar-corner{
     width: 150px;
     height: 220px;
     border-radius: 12px;
+    margin-left: 10px;
 }
 
 .baixo {
@@ -237,6 +248,7 @@ section::-webkit-scrollbar-corner{
     align-items: center;
     justify-content: center;
     margin-top: 230px;
+    margin-bottom: 230px;
 }
 
 .sem-reviews p{

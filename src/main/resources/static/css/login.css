@@ -24,24 +24,25 @@ body {
 }
 
 .login-section.dark{
-  background-color: var(--Background-light);
-
-  h1, p{
+    background-color: var(--Background-light);
+    transition: 0.5s;
+    h1, p{
     color: var(--Text-light);
-  }
+    }
 
-  label{
+    label{
     color: var(--Text-light);
-  }
+    }
 
-  input[type="email"], input[type="password"]{
+    input[type="email"], input[type="password"]{
     background-color: var(--Background-light);
     color: var(--Text-light);
-  }
+    }
 }
 
 .login-section {
     background-color: var(--Background-dark);
+    transition: 0.5s;
     padding: 2rem;
     flex: 1;
     display: flex;
