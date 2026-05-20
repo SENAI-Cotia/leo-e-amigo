@@ -189,10 +189,11 @@ section::-webkit-scrollbar-corner{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 70px;
     margin: 20px;
     border-radius: 9px;
     padding: 10px;
+
 }
 
 .informa-nomes{

@@ -40,7 +40,7 @@
         <div class="titulo">
             <div class="categoria">
                 <h1>Avalie</h1>
-                <img src="/css/images/Fire.png" alt="">
+                <img id="fireIcon" src="/css/images/Fire.png" alt="">
             </div>
         </div>
         <hr>
@@ -71,19 +71,29 @@
     </section>
 </main>
 <script>
-    const checkbox = document.getElementById("checkboxinput");
+const checkbox = document.getElementById("checkboxinput");
+const fireIcon = document.getElementById("fireIcon");
 
 const tema = localStorage.getItem("theme") || "light";
 
 if (tema === "dark") {
     document.body.classList.add("dark");
     checkbox.checked = true;
+
+    fireIcon.src = "/css/images/fireBlack.svg";
+
+} else {
+    fireIcon.src = "/css/images/Fire.png";
 }
 
 checkbox.addEventListener("change", () => {
     const isDark = checkbox.checked;
 
     document.body.classList.toggle("dark", isDark);
+    fireIcon.src = isDark
+        ? "/css/images/fireBlack.svg"
+        : "/css/images/Fire.png";
+
     localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 </script>
