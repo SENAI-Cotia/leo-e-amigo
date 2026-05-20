@@ -480,8 +480,8 @@ section::-webkit-scrollbar-corner{
     }
 
     .excluir{
-        background-color: var(--Background-light);
-        color: var(--Text-light);
+        background-color: var(--Background-form);
+        color: var(--text-light);
     }
 
     .excluir:hover{
@@ -604,7 +604,7 @@ section::-webkit-scrollbar-corner{
 
     .enviar {
         width: 100%;
-        align-items: stretch;
+        align-items: center;
         gap: 10px;
     }
 
