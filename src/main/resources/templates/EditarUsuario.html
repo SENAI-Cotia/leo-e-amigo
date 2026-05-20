@@ -33,7 +33,7 @@
            <h1 th:unless="${isAdmin}">Editar Usuário</h1>
        </div>
        <hr>
-
+       <p th:if="${mensagemErro}" th:text="${mensagemErro}" style="color: red;"></p>
        <div class="container">
            <form th:action="@{/salvarEdicaoUsuario}" th:object="${user}" method="post">
                <input type="hidden" th:field="*{id}">

@@ -17,7 +17,10 @@
         <input type="checkbox" id="checkboxinput">
         <label for="checkboxinput" class="toggleswitch"></label>
         <div class="login">
-            <h1 th:text="${username}"></h1>
+            <a th:unless="${isAdmin}" th:href="@{/editarUsuario/{id}(id=${userId})}">
+                <h1 th:text="${username}"></h1>
+            </a>
+            <h1 th:if="${isAdmin}" th:text="${username}"></h1>
             <form th:action="@{/logout}" method="post">
                 <button type="submit" class="Btn">
                     <div class="sign">
@@ -38,7 +41,7 @@
         </div>
         <hr>
 
-        <!-- VISÃO ADMIN: lista de usuários -->
+        <!-- Visão do admin: lista de usuários -->
         <div th:if="${isAdmin}">
             <div th:if="${#lists.isEmpty(users)}" class="sem-reviews">
                 <p>Ainda não há nenhum usuário cadastrado!</p>
@@ -49,13 +52,13 @@
                     <p th:text="${u.email}"></p>
                 </div>
                 <div class="botoes">
-                    <button class="excluir">Excluir</button>
+                    <a th:href="@{/excluirUsuario/{id}(id=${u.id})}" class="excluir">Excluir</a>
                     <a th:href="@{/editarUsuario/{id}(id=${u.id})}" class="editar"><button class="editar">Editar</button></a>
                 </div>
             </div>
         </div>
 
-        <!-- VISÃO USER: lista de reviews -->
+        <!-- Visão do usuário: lista de reviews -->
         <div th:unless="${isAdmin}">
             <div th:if="${#lists.isEmpty(reviews)}" class="sem-reviews">
                 <p>Você ainda não tem nenhuma avaliação. <br>
