@@ -365,7 +365,7 @@ section::-webkit-scrollbar-corner{
 
 /* botao logout do uiverse */
 
-.Btn {
+.btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
