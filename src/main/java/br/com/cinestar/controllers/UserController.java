@@ -154,5 +154,17 @@ public class UserController {
 
         return "redirect:/Home";
     }
+    private String validarDadosUsuario(String nome, String username, String senha, Long id, RedirectAttributes redirectAttributes) {
+        if (nome.matches(".*\\d.*")) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Nome não pode conter números.");
+            return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+        }
+        if (username.contains(" ")) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Username não pode conter espaços.");
+            return id == null ? "redirect:/cadastro" : "redirect:/editarUsuario/" + id;
+        }
+        
+        return null;
+    }
 
 }
