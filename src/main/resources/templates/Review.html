@@ -17,7 +17,7 @@
         <input type="checkbox" id="checkboxinput">
         <label for="checkboxinput" class="toggleswitch"></label>
         <div class="login">
-            <a th:unless="${isAdmin}" th:href="@{/editarPerfil}" class="username-link">
+            <a th:unless="${isAdmin}" th:href="@{/editarUsuario/{id}(id=${userId})}">
                 <h1 th:text="${username}"></h1>
             </a>
             <h1 th:if="${isAdmin}" th:text="${username}"></h1>
