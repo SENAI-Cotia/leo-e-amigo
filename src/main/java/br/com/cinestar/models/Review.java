@@ -14,7 +14,7 @@ public class Review {
     private Long id;
     @Column(nullable = false, length = 100)
     private String nomeFilme;
-    @Column(nullable = true, unique = false)
+    @Column(nullable = true, unique = false, columnDefinition = "TEXT")
     private String reviewDesc;
     @Column(nullable = false, unique = false)
     private Double nota;
