@@ -16,6 +16,35 @@ body.dark {
     font-family: "Inter", sans-serif;
     margin: 0;
     height: 100vh;
+
+    .info{
+        color: var(--Text-light);
+    }
+
+    section{
+        background-color: var(--White);
+    }
+
+    .titulo{
+        color: var(--Text-light);
+    }
+
+    hr{
+        border: solid 1px var(--Text-light);
+    }
+
+    .botoes a{
+        color: var(--Text-light);
+    }
+
+    .botoes a:hover{
+        color: var(--Purple);
+   }
+
+   .bottom{
+        background-color: var(--Background-light);
+        color: var(--Text-light);
+   }
 }
 
 body {
