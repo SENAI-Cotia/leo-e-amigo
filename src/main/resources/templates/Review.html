@@ -17,7 +17,10 @@
         <input type="checkbox" id="checkboxinput">
         <label for="checkboxinput" class="toggleswitch"></label>
         <div class="login">
-            <h1 th:text="${username}"></h1>
+            <a th:unless="${isAdmin}" th:href="@{/editarPerfil}" class="username-link">
+                <h1 th:text="${username}"></h1>
+            </a>
+            <h1 th:if="${isAdmin}" th:text="${username}"></h1>
             <form th:action="@{/logout}" method="post">
                 <button type="submit" class="Btn">
                     <div class="sign">
