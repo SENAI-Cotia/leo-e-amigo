@@ -304,6 +304,10 @@ header {
     gap: 15px;
 }
 
+.botoes a{
+    font-weight: 400;
+}
+
 .excluir {
     background-color: var(--Backgound-form);
     border: none;

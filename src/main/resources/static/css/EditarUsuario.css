@@ -140,7 +140,7 @@ section {
 
 
 .info{
-    margin-top: 70px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -151,8 +151,20 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 25px;
     gap: 20px;
+}
+.mensagemErro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mensagemErro p{
+    display: flex;
+    align-items: center;
+    color: var(--Purple);
+    font-weight: 600;
 }
 
 .botoes a{

@@ -38,6 +38,10 @@ body {
     background-color: var(--Background-light);
     color: var(--Text-light);
     }
+
+    .erro p{
+        color: var(--Purple);
+    }
 }
 
 .login-section {
