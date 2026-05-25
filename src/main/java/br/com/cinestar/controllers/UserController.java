@@ -110,14 +110,14 @@ public class UserController {
                     .collect(java.util.stream.Collectors.toList());
 
             model.addAttribute("users", users);
-            List<Object[]> top10Users = reviewRepository.findTop10UsersWithMostReviews(org.springframework.data.domain.PageRequest.of(0, 10));
-            model.addAttribute("top10Users", top10Users);
+            List<Object[]> top5Users = reviewRepository.findTop10UsersWithMostReviews(org.springframework.data.domain.PageRequest.of(0, 5));
+            model.addAttribute("top5Users", top5Users);
 
         } else {
             List<Review> reviews = reviewRepository.findByUser(user);
-            List<Review> top10 = reviewRepository.findTop10ByUserOrderByNotaDesc(user, org.springframework.data.domain.PageRequest.of(0, 10));
+            List<Review> top5 = reviewRepository.findTop10ByUserOrderByNotaDesc(user, org.springframework.data.domain.PageRequest.of(0, 5));
             model.addAttribute("reviews", reviews);
-            model.addAttribute("top10", top10);
+            model.addAttribute("top5", top5);
 
         }
         model.addAttribute("username", user.getUsername());

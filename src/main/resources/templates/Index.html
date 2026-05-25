@@ -95,11 +95,11 @@
         </section>
             <!-- TOP10 Reviews - tela Usuario-->
             <div class="prt2">
-                <div class="titulo" th:unless="${#lists.isEmpty(top10Users)}">
+                <div class="titulo" th:unless="${#lists.isEmpty(top5Users)}">
                     <h1>Usuários mais ativos</h1>
                 </div>
-                <hr th:unless="${#lists.isEmpty(top10Users)}">
-                <div th:each="row, iterStat : ${top10Users}" class="infoitemAdmin">
+                <hr th:unless="${#lists.isEmpty(top5Users)}">
+                <div th:each="row, iterStat : ${top5Users}" class="infoitemAdmin">
                     <div class="top-posicao">
                         <p th:text="${iterStat.index + 1}"></p>
                     </div>
@@ -111,11 +111,11 @@
             </div>
 
             <section class="prt2">
-                <div class="titulo" th:unless="${#lists.isEmpty(top10)}">
-                    <h1>Suas melhores avaliações</h1>
+                <div class="titulo" th:unless="${#lists.isEmpty(top5)}">
+                    <h1>Top 5 avaliados</h1>
                 </div>
-                <hr th:unless="${#lists.isEmpty(top10)}">
-                <div th:each="review, iterStat : ${top10}" class="infoitem">
+                <hr th:unless="${#lists.isEmpty(top5)}">
+                <div th:each="review, iterStat : ${top5}" class="infoitem">
                     <div class="informacoesItem">
                         <div class="top-posicao">
                             <p th:text="${iterStat.index + 1}"></p>
