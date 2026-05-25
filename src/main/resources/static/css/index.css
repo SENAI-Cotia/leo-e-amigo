@@ -23,7 +23,7 @@ body.dark {
         color: var(--Text-light);
     }
 
-    section{
+    .principal {
         transition: 0.5s;
         background-color: var(--White);
     }
@@ -57,6 +57,24 @@ body.dark {
         color: var(--Text-light);
         font-size: 25px;
         font-weight: 700;
+    }
+
+    .prt2{
+        background-color: var(--Backgound-light);
+    }
+
+    .infoitem{
+        color: var(--Text-light);
+        background-color: var(--Backgound-light);
+    }
+
+    .dataItem{
+        color: var(--White);
+    }
+
+    .infoitemAdmin{
+        background-color: var(--Backgound-light);
+        color: var(--Text-light);
     }
 }
 
@@ -107,28 +125,98 @@ header {
     font-size: 14px;
     margin-left: -12px;
 }
+.pai{
+    margin-right: 20px;
+   display: flex;
+   margin-left: 22px;
+   justify-content: space-between;
+}
 
-section {
+.top-posicao p{
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.prt2{
+    background-color: var(--Black);
+    color: var(--Text-dark);
+    border-radius: 12px;
+    margin-top: 50px;
+    max-height: 700px;
+    overflow-y:auto;
+    margin-left: 10px;
+}
+
+.infoitem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--Black);
+}
+
+.informacoesItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.infoitem h1{
+    font-size: 18px;
+}
+
+.infoitem p{
+    color: var(--Purple);
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.notaItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2px;
+}
+.notaItem img{
+    width: 30px;
+}
+
+.dataItem {
+    font-size: 15px;
+    background-color: var(--Purple);
+    padding: 4px;
+    border-radius: 12px;
+}
+
+.capaTop10 img{
+    width: 60px;
+    height: 80px;
+    border-radius: 12px;
+}
+
+.principal {
     transition: 0.5s;
     background-color: var(--Header);
     color: var(--Text-dark);
     border-radius: 12px;
-    margin: 50px 620px 0 30px;
+    margin-top: 50px;
     max-height: 700px;
     overflow-y:auto;
+    width: 1450px;
 }
-section::-webkit-scrollbar{
+
+.principal::-webkit-scrollbar{
     background-color: var(--Backgound-Text);
     width: 10px;
     height: 10px;
 }
 
-section::-webkit-scrollbar-thumb{
+.principal::-webkit-scrollbar-thumb{
     background-color: var(--Purple);
     border-radius:20px;
 }
 
-section::-webkit-scrollbar-corner{
+.principal::-webkit-scrollbar-corner{
     background: none;
 }
 .titulo {
@@ -263,6 +351,12 @@ section::-webkit-scrollbar-corner{
     max-width: 800px;
     min-width: 120px;
 }
+.informacoesItemTop h1{
+        width: 140px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
 
 .informacoesAdmin{
      display: flex;
@@ -272,6 +366,18 @@ section::-webkit-scrollbar-corner{
      margin-left: 15px;
 }
 
+.infoitemAdmin{
+    background-color: var(--Black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.informacoesAdmin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .data h1{
     font-size: 37px;
     color: var(--white);
@@ -433,11 +539,11 @@ section::-webkit-scrollbar-corner{
 }
 
 @media screen and (max-width: 1346px) {
-    section {
+    .principal {
         margin: 30px;
         min-height: auto;
+        width: auto;
     }
-
     .container{
         flex-direction:column;
     }
@@ -452,6 +558,11 @@ section::-webkit-scrollbar-corner{
         font-size: 25px;
         font-weight: 700;
         margin-bottom: 330px;
+    }
+
+    .pai{
+        display: flex;
+        flex-direction: column;
     }
 
     .informacoes {
@@ -521,7 +632,7 @@ section::-webkit-scrollbar-corner{
         font-size: 12px;
     }
 
-    section {
+    .principal {
         margin: 15px;
         min-height: auto;
     }
