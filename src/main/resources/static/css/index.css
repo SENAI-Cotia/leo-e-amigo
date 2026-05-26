@@ -594,6 +594,14 @@ header {
         display: block;
         align-items: center;
         gap: 10px;
+
+    }
+
+    .data h1{
+        width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .baixo {
@@ -654,6 +662,13 @@ header {
     .principal {
         margin: 15px;
         min-height: auto;
+    }
+
+    .data h1{
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .titulo {
@@ -769,6 +784,14 @@ header {
 
     .informacoes h1 {
         font-size: 1.5rem;
+    }
+
+
+    .data h1{
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .sem-reviews p{
