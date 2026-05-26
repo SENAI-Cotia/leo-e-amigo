@@ -230,6 +230,17 @@ header {
 
 .titulo h1 {
     font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.tituloTop{
+    display: flex;
+    justify-content: center;
+}
+
+.tituloTop h1{
+    margin-bottom: 1px;
 }
 
 .editar{
