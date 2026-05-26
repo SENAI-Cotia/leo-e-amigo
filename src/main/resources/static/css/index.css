@@ -126,7 +126,7 @@ header {
     margin-left: -12px;
 }
 .pai{
-    margin-right: 20px;
+    margin-right: 70px;
    display: flex;
    margin-left: 22px;
    justify-content: space-between;
@@ -385,6 +385,10 @@ header {
 .data h1{
     font-size: 37px;
     color: var(--white);
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .data{
