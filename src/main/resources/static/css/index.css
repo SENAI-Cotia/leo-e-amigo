@@ -76,6 +76,10 @@ body.dark {
         background-color: var(--Backgound-light);
         color: var(--Text-light);
     }
+
+    .tituloTop h1{
+        color: var(--Text-light);
+    }
 }
 
 body {
@@ -241,6 +245,7 @@ header {
 
 .tituloTop h1{
     margin-bottom: 1px;
+
 }
 
 .editar{
