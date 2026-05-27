@@ -50,9 +50,13 @@ public class UserController {
     }
 
     @GetMapping("/editarUsuario/{id}")
-    public String formEditarUsuario(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        model.addAttribute("user", user);
+    public String formEditarUsuario(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes redirectAttributes) {
+        Optional<User> userOpt = userRepository.findById(id);
+        if (userOpt.isEmpty()) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Usuário não encontrado.");
+            return "redirect:/Home";
+        }
+        model.addAttribute("user", userOpt.get());
 
         User logado = userRepository.findByEmail(userDetails.getUsername()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         model.addAttribute("username", logado.getUsername());
