@@ -52,13 +52,15 @@
                 <textarea class="input-descreva" th:field="*{reviewDesc}" placeholder="Escreva aqui:"></textarea>
             </div>
             <div class="top1">
-                <input type="date" class="input-nome"  th:field="*{dataAssistido}" placeholder="Data:">
+                <input type="date" class="input-nome" name="dataAssistido"
+                       th:value="${review.dataAssistido != null ? #temporals.format(review.dataAssistido, 'yyyy-MM-dd') : ''}"
+                       placeholder="Data:">
                 <textarea class="input-descreva" th:field="*{urlCapaFilme}" placeholder="URL da imagem:" required></textarea>
             </div>
             <div class="baixo">
                 <div class="avaliar">
                     <img src="/css/images/Star%204.svg" alt="Estrela rosa">
-                    <input th:field="*{nota}" class="avalie" max="5" min="1" type="number"  placeholder="Nota:" required>
+                    <input th:field="*{nota}" class="avalie" max="5" min="1" type="number" step="0.1" placeholder="Nota:" required>
                 </div>
 
                 <div class="enviar">

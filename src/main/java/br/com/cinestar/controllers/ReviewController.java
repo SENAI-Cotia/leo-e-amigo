@@ -30,7 +30,7 @@ public class ReviewController {
 
         model.addAttribute("review", new Review());
         model.addAttribute("username", user.getUsername());
-
+        model.addAttribute("userId", user.getId());
         return "Review";
     }
 
@@ -68,7 +68,7 @@ public class ReviewController {
         }
         model.addAttribute("review", review);
         model.addAttribute("username", user.getUsername());
-
+        model.addAttribute("userId", user.getId()); 
         return "Review";
     }
 

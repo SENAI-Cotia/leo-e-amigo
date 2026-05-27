@@ -34,63 +34,108 @@
     </div>
 </header>
 <main>
-    <section>
-        <div class="titulo">
-            <h1 th:if="${isAdmin}">Usuários cadastrados</h1>
-            <h1 th:unless="${isAdmin}">Suas avaliações</h1>
-            <button class="editar" th:unless="${isAdmin}"><a th:href="@{/review}">+ Avaliar</a></button>
-        </div>
-        <hr>
+    <div class="pai">
+        <section class="principal">
+            <div class="titulo">
+                <h1 th:if="${isAdmin}">Usuários cadastrados</h1>
+                <h1 th:unless="${isAdmin}">Suas avaliações</h1>
+                <button class="editar" th:unless="${isAdmin}"><a th:href="@{/review}">+ Avaliar</a></button>
+            </div>
+            <hr>
 
-        <!-- Visão do admin: lista de usuários -->
-        <div th:if="${isAdmin}">
-            <div th:if="${#lists.isEmpty(users)}" class="sem-reviews">
-                <p>Ainda não há nenhum usuário cadastrado!</p>
-            </div>
-            <div class="info" th:each="u:${users}">
-                <div class="informa-nomes">
-                    <p class="nome" th:text="${u.nome}"></p>
-                    <p th:text="${u.email}"></p>
+            <!-- Visão do usuário: lista de reviews -->
+            <div th:unless="${isAdmin}">
+                <div th:if="${#lists.isEmpty(reviews)}" class="sem-reviews">
+                    <p>Você ainda não tem nenhuma avaliação. <br>
+                        Clique em "+ Avaliar" para começar!</p>
                 </div>
-                <div class="botoes">
-                    <a th:href="@{/excluirUsuario/{id}(id=${u.id})}" class="excluir">Excluir</a>
-                    <a th:href="@{/editarUsuario/{id}(id=${u.id})}" class="editar"><button class="editar">Editar</button></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Visão do usuário: lista de reviews -->
-        <div th:unless="${isAdmin}">
-            <div th:if="${#lists.isEmpty(reviews)}" class="sem-reviews">
-                <p>Você ainda não tem nenhuma avaliação. <br>
-                    Clique em "+ Avaliar" para começar!</p>
-            </div>
-            <div class="info" th:each="review:${reviews}">
-                <div class="container">
-                    <div class="capa">
-                        <img th:src="${review.urlCapaFilme}">
-                    </div>
-                    <div class="informacoes">
-                        <div class="data">
-                            <h1 th:text="${review.nomeFilme}"></h1>
-                            <p th:text="${review.dataAssistido}"></p>
+                <div class="info" th:each="review:${reviews}">
+                    <div class="container">
+                        <div class="capa">
+                            <img th:src="${review.urlCapaFilme}">
                         </div>
-                        <p th:text="${review.reviewDesc}"></p>
+                        <div class="informacoes">
+                            <div class="data">
+                                <h1 th:text="${review.nomeFilme}"></h1>
+                                <p th:text="${#temporals.format(review.dataAssistido, 'dd/MM/yyyy')}"></p>
+                            </div>
+                            <p th:text="${review.reviewDesc}"></p>
+                        </div>
+                    </div>
+                    <div class="baixo">
+                        <div class="nota">
+                            <img src="/css/images/Star%204.svg" alt="Estrela rosa">
+                            <h1 th:text="${review.nota}"></h1>
+                        </div>
+                        <div class="enviar">
+                            <a  class="tagA" th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
+                            <a th:href="@{/editarReview/{id}(id=${review.id})}"><button class="editar">Editar</button></a>
+                        </div>
                     </div>
                 </div>
-                <div class="baixo">
-                    <div class="nota">
+            </div>
+            <div th:if="${isAdmin}" class="principalAdmin">
+                <div th:if="${#lists.isEmpty(users)}" class="sem-reviews">
+                    <p>Ainda não há nenhum usuário cadastrado!</p>
+                </div>
+                <div class="info" th:each="u:${users}">
+                    <div class="informa-nomes">
+                        <p class="nome" th:text="${u.username}"></p>
+                        <p th:text="${u.email}"></p>
+                    </div>
+                    <div class="botoes">
+                        <a th:href="@{/excluirUsuario/{id}(id=${u.id})}" class="excluir">Excluir</a>
+                        <a th:href="@{/editarUsuario/{id}(id=${u.id})}" class="editar"><button class="editar">Editar</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOP10 Usuarios - tela admin-->
+
+        </section>
+            <!-- TOP10 Reviews - tela Usuario-->
+            <div class="prt2">
+                <div class="titulo" th:unless="${#lists.isEmpty(top5Users)}">
+                    <h1>Usuários mais ativos</h1>
+                </div>
+                <hr th:unless="${#lists.isEmpty(top5Users)}">
+                <div th:each="row, iterStat : ${top5Users}" class="infoitemAdmin">
+                    <div class="top-posicao">
+                        <p th:text="${iterStat.index + 1}"></p>
+                    </div>
+                    <div class="informacoesAdmin">
+                        <h1 th:text="${row[0].username}"></h1>
+                    </div>
+                    <span class="tag-data" th:text="${row[1]} + ' reviews'"></span>
+                </div>
+            </div>
+
+            <section class="prt2">
+                <div class="tituloTop" th:unless="${#lists.isEmpty(top5)}">
+                    <h1>Top 5 avaliados</h1>
+                </div>
+                <hr th:unless="${#lists.isEmpty(top5)}">
+                <div th:each="review, iterStat : ${top5}" class="infoitem">
+                    <div class="informacoesItem">
+                        <div class="top-posicao">
+                            <p th:text="${iterStat.index + 1}"></p>
+                        </div>
+                        <div class="capaTop10">
+                            <img th:src="${review.urlCapaFilme}">
+                        </div>
+                        <div class="informacoesItemTop">
+                            <h1 th:text="${review.nomeFilme}"></h1>
+                            <span class="dataItem" th:text="${review.dataAssistido != null ? #temporals.format(review.dataAssistido, 'dd/MM/yyyy') : 'Sem data'}"></span>
+                        </div>
+                    </div>
+                    <div class="notaItem">
                         <img src="/css/images/Star%204.svg" alt="Estrela rosa">
                         <h1 th:text="${review.nota}"></h1>
                     </div>
-                    <div class="enviar">
-                        <a  class="tagA" th:href="@{/excluir/{id}(id=${review.id})}">Excluir</a>
-                        <a th:href="@{/editarReview/{id}(id=${review.id})}"><button class="editar">Editar</button></a>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </section>
+    </div>
 </main>
 <script>
     const checkbox = document.getElementById("checkboxinput");

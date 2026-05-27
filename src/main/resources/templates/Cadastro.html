@@ -40,6 +40,9 @@
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" placeholder="Senha" th:field="*{senha}"required>
             </div>
+            <div th:if="${mensagemErro}" class="erro">
+                <p th:text="${mensagemErro}"></p>
+            </div>
             <button type="submit">Registrar</button>
             <p>Já tem uma conta? <a class="login" th:href="@{/}">Já possui conta?</a></p>
             <div class="tema">
