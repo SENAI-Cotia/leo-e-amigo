@@ -23,12 +23,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/cadastro", "/","/salvar").permitAll() // Rota publicas
+                .requestMatchers("/login", "/cadastro", "/","/salvar").permitAll()
                 .requestMatchers("/css/**", "/js/**").permitAll()
-                .anyRequest().authenticated() // Qualquer rota ele vai privar
+                .anyRequest().authenticated()
         ).formLogin(form -> form
                 .loginPage("/")
-                .loginProcessingUrl("/login")   // <- essa linha garante que o Security intercepta o POST /login
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/Home", true)
                 .failureUrl("/?error")
                 .permitAll()
