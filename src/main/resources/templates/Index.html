@@ -43,7 +43,6 @@
             </div>
             <hr>
 
-            <!-- Visão do usuário: lista de reviews -->
             <div th:unless="${isAdmin}">
                 <div th:if="${#lists.isEmpty(reviews)}" class="sem-reviews">
                     <p>Você ainda não tem nenhuma avaliação. <br>
@@ -90,15 +89,15 @@
                 </div>
             </div>
 
-            <!-- TOP10 Usuarios - tela admin-->
-
         </section>
-            <!-- TOP10 Reviews - tela Usuario-->
-            <div class="prt2">
-                <div class="titulo" th:unless="${#lists.isEmpty(top5Users)}">
+            <div class="prt2" th:if="${isAdmin}">
+                <div class="titulo">
                     <h1>Usuários mais ativos</h1>
                 </div>
-                <hr th:unless="${#lists.isEmpty(top5Users)}">
+                <hr>
+                <div th:if="${#lists.isEmpty(top5Users)}" class="sem-reviews">
+                    <p>Nenhum usuário cadastrado ainda.</p>
+                </div>
                 <div th:each="row, iterStat : ${top5Users}" class="infoitemAdmin">
                     <div class="top-posicao">
                         <p th:text="${iterStat.index + 1}"></p>
@@ -110,11 +109,14 @@
                 </div>
             </div>
 
-            <section class="prt2">
-                <div class="tituloTop" th:unless="${#lists.isEmpty(top5)}">
+            <section class="prt2" th:unless="${isAdmin}">
+                <div class="tituloTop">
                     <h1>Top 5 avaliados</h1>
                 </div>
-                <hr th:unless="${#lists.isEmpty(top5)}">
+                <hr>
+                <div th:if="${#lists.isEmpty(top5)}" class="sem-reviews">
+                    <p>Nenhuma avaliação cadastrada ainda.</p>
+                </div>
                 <div th:each="review, iterStat : ${top5}" class="infoitem">
                     <div class="informacoesItem">
                         <div class="top-posicao">
