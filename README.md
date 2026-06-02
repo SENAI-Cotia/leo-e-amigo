@@ -87,7 +87,7 @@ mvn spring-boot:run
 
 Desenvolvido por
 
-[![Leo](https://img.shields.io/badge/LVDEV07-181717?style=flat&logo=github&logoColor=white)](https://github.com/LeoSabbatini)
-[![João](https://img.shields.io/badge/Fabiz2-181717?style=flat&logo=github&logoColor=white)](https://github.com/manobrown29)
+[![Leo](https://img.shields.io/badge/LeoSabbatini-181717?style=flat&logo=github&logoColor=white)](https://github.com/LeoSabbatini)
+[![João](https://img.shields.io/badge/Manobrown29-181717?style=flat&logo=github&logoColor=white)](https://github.com/manobrown29)
 
 </div>
